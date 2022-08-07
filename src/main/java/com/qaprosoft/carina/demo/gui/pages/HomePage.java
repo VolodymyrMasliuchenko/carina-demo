@@ -53,6 +53,8 @@ public class HomePage extends AbstractPage {
         return footerMenu;
     }
 
+
+
     public BrandModelsPage selectBrand(String brand) {
         LOGGER.info("selecting '" + brand + "' brand...");
         for (ExtendedWebElement brandLink : brandLinks) {

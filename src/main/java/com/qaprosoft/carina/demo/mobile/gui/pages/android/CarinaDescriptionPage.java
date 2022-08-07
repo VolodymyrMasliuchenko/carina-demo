@@ -10,7 +10,13 @@ import org.openqa.selenium.support.FindBy;
 @DeviceType(pageType = Type.ANDROID_PHONE, parentClass = CarinaDescriptionPageBase.class)
 public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
 
-    @FindBy(id = "content_frame")
+    @FindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
+    private ExtendedWebElement hamburgerMenu;
+
+    @FindBy(xpath = "(//android.widget.LinearLayout/android.widget.TextView)[1]")
+    private ExtendedWebElement usernameInHamburgerMenu;
+
+    @FindBy(id = "android:id/content")
     private ExtendedWebElement webViewContent;
 
     @FindBy(xpath = "//android.view.View[@text = 'CARINA facts']")
@@ -36,6 +42,11 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     }
 
     @Override
+    public boolean isNamePresent() {
+        return usernameInHamburgerMenu.isElementPresent();
+    }
+
+    @Override
     public WebViewPageBase navigateToWebViewPage() {
         leftMenuButton.click();
         webViewLink.click();
@@ -54,6 +65,11 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
         leftMenuButton.click();
         mapLink.click();
         return initPage(getDriver(), MapsPageBase.class);
+    }
+
+    @Override
+    public void clickHamburgerMenu() {
+        hamburgerMenu.click();
     }
 
     @Override
