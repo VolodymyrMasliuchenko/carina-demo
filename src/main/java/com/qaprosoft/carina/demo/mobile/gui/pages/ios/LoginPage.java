@@ -44,6 +44,11 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public boolean isSexRadioButtonsChecked(genderList sex) {
+		return false;
+	}
+
+	@Override
 	public void typeName(String name) {
 		nameInputField.type(name);
 	}
@@ -51,11 +56,6 @@ public class LoginPage extends LoginPageBase {
 	@Override
 	public void typePassword(String password) {
 		passwordInputField.type(password);
-	}
-
-	@Override
-	public void selectMaleSex() {
-		maleRadioBtn.click();
 	}
 
 	@Override
@@ -75,12 +75,47 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
+	public boolean isNameInputFieldPresent() {
+		return false;
+	}
+
+	@Override
+	public boolean isPasswordInputFieldPresent() {
+		return false;
+	}
+
+	@Override
+	public boolean isSexRadioButtonsPresent(genderList sex) {
+		return false;
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxPresent() {
+		return false;
+	}
+
+	@Override
+	public boolean isNameInputFieldTyped(String username) {
+		return false;
+	}
+
+	@Override
+	public boolean isPasswordInputFieldTyped(String password) {
+		return false;
+	}
+
+	@Override
+	public boolean isPrivacyPolicyCheckboxChecked() {
+		return false;
+	}
+
+	@Override
 	public CarinaDescriptionPageBase login(){
 		String username = "Test user";
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
 		typePassword(password);
-		selectMaleSex();
+		selectSex(genderList.MALE);
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}

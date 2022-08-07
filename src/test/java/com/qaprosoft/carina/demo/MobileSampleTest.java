@@ -15,6 +15,8 @@
  */
 package com.qaprosoft.carina.demo;
 
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.LoginPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.android.WelcomePage;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -48,7 +50,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        loginPage.selectMaleSex();
+        loginPage.selectSex(LoginPageBase.genderList.MALE);
         loginPage.checkPrivacyPolicyCheckbox();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
@@ -99,6 +101,49 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(uiElements.isFemaleRadioButtonSelected(), "Female radio button was not selected!");
         uiElements.clickOnOtherRadioButton();
         Assert.assertTrue(uiElements.isOthersRadioButtonSelected(), "Others radio button was not selected!");
+    }
+
+    @Test()
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "feature", value = {"mobile", "regression"})
+    public void testLoginUserWithVerify() {
+        String username = "Vova";
+        String password = RandomStringUtils.randomAlphabetic(10);
+        WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
+        Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
+
+        //1 - on Welcome page click Next btn -> Login page is opened
+        LoginPageBase loginPage = welcomePage.clickNextBtn();
+        Assert.assertTrue(loginPage.isPageOpened(), "Login page isn't opened");
+        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
+
+        //2 - verify fields are present
+        Assert.assertTrue(loginPage.isNameInputFieldPresent(), "NameInputField isn't present");
+        Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "PasswordInputField isn't present");
+        Assert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.genderList.FEMALE), "Female radio button isn't present");
+        Assert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.genderList.MALE), "Male radio buttons isn't present");
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "PrivacyPolicyCheckbox isn't present");
+
+        //3 - type name, password -> name and password are typed
+        loginPage.typeName(username);
+        loginPage.typePassword(password);
+        Assert.assertTrue(loginPage.isNameInputFieldTyped(username), "Username isn't typed");
+        Assert.assertTrue(loginPage.isPasswordInputFieldTyped(password), "Password isn't typed");
+
+        //4 - choose sex -> male or female is checked
+       loginPage.selectSex(LoginPageBase.genderList.MALE);
+       Assert.assertTrue(loginPage.isSexRadioButtonsChecked(LoginPageBase.genderList.MALE), "Male radio button isn't checked");
+       Assert.assertFalse(loginPage.isSexRadioButtonsChecked(LoginPageBase.genderList.FEMALE), "Female radio button isn't checked");
+
+        //5 - tap Privacy Policy checkbox -> checkbox is checked
+        loginPage.checkPrivacyPolicyCheckbox();
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxChecked(), "PrivacyPolicyCheckbox isn't checked");
+
+        //6 - click Sign Up btn -> user is logined, Web View page is opened
+        CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
+        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
+        carinaDescriptionPage.clickHamburgerMenu();
+        Assert.assertTrue(carinaDescriptionPage.isNamePresent(), "User isn't login");
     }
 
 }

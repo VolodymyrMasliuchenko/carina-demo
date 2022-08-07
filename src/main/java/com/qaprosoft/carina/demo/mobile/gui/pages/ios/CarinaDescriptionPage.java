@@ -22,6 +22,11 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     }
 
     @Override
+    public boolean isNamePresent() {
+        return false;
+    }
+
+    @Override
     public WebViewPageBase navigateToWebViewPage() {
         throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
     }
@@ -34,6 +39,11 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     @Override
     public MapsPageBase navigateToMapPage() {
         throw new UnsupportedOperationException(THIS_METHOD_IS_DEFINED_ONLY_IN_ANDROID);
+    }
+
+    @Override
+    public void clickHamburgerMenu() {
+
     }
 
     @Override
