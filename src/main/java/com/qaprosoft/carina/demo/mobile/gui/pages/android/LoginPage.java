@@ -54,8 +54,8 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isSexRadioButtonsPresent(genderList sex) {
-        if (Objects.equals(sex.value, genderList.MALE.value)) {
+    public boolean isSexRadioButtonsPresent(GenderList sex) {
+        if (Objects.equals(sex.value, GenderList.MALE.value)) {
             return maleRadioBtn.isElementPresent();
         } else {
             return femaleRadioBtn.isElementPresent();
@@ -66,16 +66,20 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
         return privacyPolicyCheckbox.isElementPresent();
     }
 
-    public boolean isNameInputFieldTyped(String username) {return nameInputField.isElementWithTextPresent(username);}
-    public boolean isPasswordInputFieldTyped(String password) {return passwordInputField.isElementWithTextPresent(password);}
+    public String getUsernameInputField() {
+        return nameInputField.getText();
+    }
+    public String getPasswordInputField() {
+        return passwordInputField.getText();
+    }
 
     public boolean isPrivacyPolicyCheckboxChecked() {
         return privacyPolicyCheckbox.isChecked();
     }
 
     @Override
-    public boolean isSexRadioButtonsChecked(genderList sex) {
-        if (Objects.equals(sex.value, genderList.MALE.value)) {
+    public boolean isSexRadioButtonsChecked(GenderList sex) {
+        if (Objects.equals(sex.value, GenderList.MALE.value)) {
             return maleRadioBtn.isChecked();
         } else {
             return femaleRadioBtn.isChecked();
@@ -94,8 +98,8 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     }
 
     @Override
-    public void selectSex(genderList sex) {
-        if (Objects.equals(sex.value, genderList.MALE.value)) {
+    public void selectSex(GenderList sex) {
+        if (Objects.equals(sex.value, GenderList.MALE.value)) {
             maleRadioBtn.click();
         } else {
             femaleRadioBtn.click();
@@ -122,7 +126,7 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
     public CarinaDescriptionPageBase login() {
         String username = "Test user";
         String password = RandomStringUtils.randomAlphabetic(10);
-        genderList sex = genderList.MALE;
+        GenderList sex = GenderList.MALE;
         typeName(username);
         typePassword(password);
         selectSex(sex);

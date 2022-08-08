@@ -11,13 +11,13 @@ public abstract class LoginPageBase extends AbstractPage {
 		super(driver);
 	}
 
-	public abstract boolean isSexRadioButtonsChecked(genderList sex);
+	public abstract boolean isSexRadioButtonsChecked(GenderList sex);
 
 	public abstract void typeName(String name);
 
 	public abstract void typePassword(String password);
 
-	public void selectSex(genderList sex) {
+	public void selectSex(GenderList sex) {
 		throw new NotImplementedException("Method is not implemented for IOS");
 	}
 
@@ -31,25 +31,25 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract boolean isPasswordInputFieldPresent();
 
-	public abstract boolean isSexRadioButtonsPresent(genderList sex);
+	public abstract boolean isSexRadioButtonsPresent(GenderList sex);
 
 	public abstract boolean isPrivacyPolicyCheckboxPresent();
 
-	public abstract boolean isNameInputFieldTyped(String username);
+	public abstract String getUsernameInputField();
 
-	public abstract boolean isPasswordInputFieldTyped(String password);
+	public abstract String getPasswordInputField();
 
 	public abstract boolean isPrivacyPolicyCheckboxChecked();
 
 	public abstract CarinaDescriptionPageBase login();
 
-	public enum genderList {
+	public enum GenderList {
 		MALE("male"),
 		FEMALE("female");
 
 		public final String value;
 
-		genderList(String value) {
+		GenderList(String value) {
 			this.value = value;
 		}
 

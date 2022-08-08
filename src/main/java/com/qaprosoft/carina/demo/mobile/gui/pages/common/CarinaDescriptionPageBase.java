@@ -9,15 +9,11 @@ public abstract class CarinaDescriptionPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isNamePresent();
-
     public abstract WebViewPageBase navigateToWebViewPage();
 
     public abstract ChartsPageBase navigateToChartsPage();
 
     public abstract MapsPageBase navigateToMapPage();
-
-    public abstract void clickHamburgerMenu();
 
     public abstract UIElementsPageBase navigateToUIElementsPage();
 

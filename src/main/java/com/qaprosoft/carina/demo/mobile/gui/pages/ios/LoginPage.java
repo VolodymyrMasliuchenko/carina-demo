@@ -1,5 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -44,8 +45,8 @@ public class LoginPage extends LoginPageBase {
 	}
 
 	@Override
-	public boolean isSexRadioButtonsChecked(genderList sex) {
-		return false;
+	public boolean isSexRadioButtonsChecked(GenderList sex) {
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
@@ -76,37 +77,37 @@ public class LoginPage extends LoginPageBase {
 
 	@Override
 	public boolean isNameInputFieldPresent() {
-		return false;
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
 	public boolean isPasswordInputFieldPresent() {
-		return false;
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
-	public boolean isSexRadioButtonsPresent(genderList sex) {
-		return false;
+	public boolean isSexRadioButtonsPresent(GenderList sex) {
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
 	public boolean isPrivacyPolicyCheckboxPresent() {
-		return false;
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
-	public boolean isNameInputFieldTyped(String username) {
-		return false;
+	public String getUsernameInputField() {
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
-	public boolean isPasswordInputFieldTyped(String password) {
-		return false;
+	public String getPasswordInputField() {
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
 	public boolean isPrivacyPolicyCheckboxChecked() {
-		return false;
+		throw new NotImplementedException("Not implemented");
 	}
 
 	@Override
@@ -115,7 +116,7 @@ public class LoginPage extends LoginPageBase {
 		String password = RandomStringUtils.randomAlphabetic(10);
 		typeName(username);
 		typePassword(password);
-		selectSex(genderList.MALE);
+		selectSex(GenderList.MALE);
 		checkPrivacyPolicyCheckbox();
 		return clickLoginBtn();
 	}
