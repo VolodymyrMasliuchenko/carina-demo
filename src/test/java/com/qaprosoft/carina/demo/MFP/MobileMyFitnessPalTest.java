@@ -13,12 +13,9 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @MethodOwner(owner = "vmasliuchenko")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginPageMyFitnessPal() {
-        String username = "";
         String email = "";
         String password = "";
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.loginToAccount(email, password);
-        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        commonPage.isUserLoggedIn(username);
     }
 }

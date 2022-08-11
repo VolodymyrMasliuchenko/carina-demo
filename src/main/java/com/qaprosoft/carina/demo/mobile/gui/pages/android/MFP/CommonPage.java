@@ -15,11 +15,9 @@ public class CommonPage extends CommonPageBase {
     }
 
     @Override
-    public boolean isUserLoggedIn(String username) {
+    public boolean isUserLoggedIn() {
         DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
-        Assert.assertTrue(dashboardPage.isUserAvatarPresent(), "User avatar isn't present");
-        AccountInfoPageBase accountInfoPageMyFitnessPal = dashboardPage.clickUserAvatar();
-        Assert.assertEquals(accountInfoPageMyFitnessPal.getAccountUsername(), username, "User isn't logged in to account");
+        Assert.assertTrue(dashboardPage.isUserAvatarPresent(), "User isn't logged in");
         return true;
     }
 }

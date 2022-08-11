@@ -12,7 +12,7 @@ public class CommonPage extends CommonPageBase {
     }
 
     @Override
-    public boolean isUserLoggedIn(String username) {
+    public boolean isUserLoggedIn() {
         throw new NotImplementedException("Not implemented");
     }
 }

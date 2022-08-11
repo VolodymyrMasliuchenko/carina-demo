@@ -2,10 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DashboardPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.WelcomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -93,6 +90,8 @@ public class LoginPage extends LoginPageBase {
         loginPage.clickLoginButton();
         HomeScreenTutorialPopUpPageBase homeScreenTutorialPopUp = initPage(getDriver(), HomeScreenTutorialPopUpPageBase.class);
         homeScreenTutorialPopUp.clickClosePopUpButton();
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        commonPage.isUserLoggedIn();
         return initPage(getDriver(), DashboardPageBase.class);
     }
 
