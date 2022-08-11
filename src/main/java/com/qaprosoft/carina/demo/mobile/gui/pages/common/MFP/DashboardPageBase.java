@@ -8,8 +8,8 @@ public abstract class HomePageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isUserAvatarButtonPresent();
+    public abstract boolean isUserAvatarPresent();
 
-    public abstract AccountInfoPageBase clickUserAvatarButton();
+    public abstract AccountInfoPageBase clickUserAvatar();
 
 }

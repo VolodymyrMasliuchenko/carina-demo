@@ -13,12 +13,12 @@ public class HomePage extends HomePageBase {
     }
 
     @Override
-    public boolean isUserAvatarButtonPresent() {
+    public boolean isUserAvatarPresent() {
         throw new NotImplementedException("Not implemented");
     }
 
     @Override
-    public AccountInfoPageBase clickUserAvatarButton() {
+    public AccountInfoPageBase clickUserAvatar() {
         throw new NotImplementedException("Not implemented");
     }
 }

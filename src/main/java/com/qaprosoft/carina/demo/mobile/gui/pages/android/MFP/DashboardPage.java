@@ -11,20 +11,20 @@ import org.openqa.selenium.support.FindBy;
 public class HomePage extends HomePageBase {
 
     @FindBy(xpath = "//android.view.View[@content-desc='User avatar']")
-    private ExtendedWebElement userAvatarButton;
+    private ExtendedWebElement userAvatar;
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public boolean isUserAvatarButtonPresent() {
-        return userAvatarButton.isElementPresent();
+    public boolean isUserAvatarPresent() {
+        return userAvatar.isElementPresent();
     }
 
     @Override
-    public AccountInfoPageBase clickUserAvatarButton() {
-        userAvatarButton.click();
+    public AccountInfoPageBase clickUserAvatar() {
+        userAvatar.click();
         return initPage(getDriver(), AccountInfoPageBase.class);
     }
 }

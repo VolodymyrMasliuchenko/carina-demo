@@ -6,6 +6,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomePageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomeScreenTutorialPopUpBase.class)
 public class HomeScreenTutorialPopUp extends HomeScreenTutorialPopUpBase {
@@ -32,6 +33,8 @@ public class HomeScreenTutorialPopUp extends HomeScreenTutorialPopUpBase {
 
     @Override
     public HomePageBase clickClosePopUpButton() {
+        HomeScreenTutorialPopUpBase homeScreenTutorialPopUp = initPage(getDriver(), HomeScreenTutorialPopUpBase.class);
+        Assert.assertTrue(homeScreenTutorialPopUp.isClosePopUpButtonPresent(), "Close button isn't present");
         closePopUpButton.click();
         return initPage(getDriver(), HomePageBase.class);
     }
