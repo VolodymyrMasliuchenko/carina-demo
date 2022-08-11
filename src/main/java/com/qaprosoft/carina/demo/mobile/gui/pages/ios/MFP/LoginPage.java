@@ -1,8 +1,8 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 
@@ -23,17 +23,7 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public boolean isSubmitButtonPresent() {
-        throw new NotImplementedException("Not Implemented");
-    }
-
-    @Override
-    public boolean isForgotPasswordButtonPresent() {
-        throw new NotImplementedException("Not Implemented");
-    }
-
-    @Override
-    public boolean isContinueWithFacebookPresent() {
+    public boolean isLoginButtonPresent() {
         throw new NotImplementedException("Not Implemented");
     }
 
@@ -53,12 +43,12 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public HomeScreenTutorialPopUpBase clickSubmitButton() {
+    public void clickLoginButton() {
         throw new NotImplementedException("Not Implemented");
     }
 
     @Override
-    public HomeScreenTutorialPopUpBase loginToAccount(String email, String password) {
+    public DashboardPageBase loginToAccount(String email, String password) {
         throw new NotImplementedException("Not Implemented");
     }
 }

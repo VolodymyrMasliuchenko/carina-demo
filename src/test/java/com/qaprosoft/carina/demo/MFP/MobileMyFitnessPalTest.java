@@ -17,8 +17,8 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         String email = "";
         String password = "";
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        HomeScreenTutorialPopUpBase homeScreenTutorialPopUp = loginPage.loginToAccount(email, password);
+        loginPage.loginToAccount(email, password);
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
-        commonPage.checkUsername(homeScreenTutorialPopUp, username);
+        commonPage.isUserLoggedIn(username);
     }
 }

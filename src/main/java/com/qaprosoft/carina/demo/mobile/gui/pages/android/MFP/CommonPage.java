@@ -3,8 +3,8 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.AccountInfoPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.CommonPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomePageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DashboardPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpPageBase;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -15,12 +15,11 @@ public class CommonPage extends CommonPageBase {
     }
 
     @Override
-    public void checkUsername(HomeScreenTutorialPopUpBase homeScreenTutorialPopUp, String username) {
-        Assert.assertTrue(homeScreenTutorialPopUp.isClosePopUpButtonPresent(), "Close button isn't present");
-        Assert.assertTrue(homeScreenTutorialPopUp.isLaunchQuickTipsButtonPresent(), "Launch quick tips button isn't present");
-        HomePageBase homePage = homeScreenTutorialPopUp.clickClosePopUpButton();
-        Assert.assertTrue(homePage.isUserAvatarButtonPresent(), "User avatar isn't present");
-        AccountInfoPageBase accountInfoPageMyFitnessPal = homePage.clickUserAvatarButton();
+    public boolean isUserLoggedIn(String username) {
+        DashboardPageBase dashboardPage = initPage(getDriver(), DashboardPageBase.class);
+        Assert.assertTrue(dashboardPage.isUserAvatarPresent(), "User avatar isn't present");
+        AccountInfoPageBase accountInfoPageMyFitnessPal = dashboardPage.clickUserAvatar();
         Assert.assertEquals(accountInfoPageMyFitnessPal.getAccountUsername(), username, "User isn't logged in to account");
+        return true;
     }
 }

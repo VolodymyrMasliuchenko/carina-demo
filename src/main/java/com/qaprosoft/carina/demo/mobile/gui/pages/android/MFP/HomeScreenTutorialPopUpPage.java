@@ -2,14 +2,14 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomePageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DashboardPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomeScreenTutorialPopUpBase.class)
-public class HomeScreenTutorialPopUp extends HomeScreenTutorialPopUpBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomeScreenTutorialPopUpPageBase.class)
+public class HomeScreenTutorialPopUpPage extends HomeScreenTutorialPopUpPageBase {
 
     @FindBy(xpath = "(//android.widget.Button)[1]")
     private ExtendedWebElement closePopUpButton;
@@ -17,7 +17,7 @@ public class HomeScreenTutorialPopUp extends HomeScreenTutorialPopUpBase {
     @FindBy(xpath = "(//android.widget.Button)[2]")
     private ExtendedWebElement launchQuickTipsButton;
 
-    public HomeScreenTutorialPopUp(WebDriver driver) {
+    public HomeScreenTutorialPopUpPage(WebDriver driver) {
         super(driver);
     }
 
@@ -32,11 +32,11 @@ public class HomeScreenTutorialPopUp extends HomeScreenTutorialPopUpBase {
     }
 
     @Override
-    public HomePageBase clickClosePopUpButton() {
-        HomeScreenTutorialPopUpBase homeScreenTutorialPopUp = initPage(getDriver(), HomeScreenTutorialPopUpBase.class);
+    public DashboardPageBase clickClosePopUpButton() {
+        HomeScreenTutorialPopUpPageBase homeScreenTutorialPopUp = initPage(getDriver(), HomeScreenTutorialPopUpPageBase.class);
         Assert.assertTrue(homeScreenTutorialPopUp.isClosePopUpButtonPresent(), "Close button isn't present");
         closePopUpButton.click();
-        return initPage(getDriver(), HomePageBase.class);
+        return initPage(getDriver(), DashboardPageBase.class);
     }
 
 

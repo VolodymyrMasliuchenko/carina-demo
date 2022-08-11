@@ -8,6 +8,6 @@ public abstract class CommonPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract void checkUsername(HomeScreenTutorialPopUpBase homeScreenTutorialPopUpBase, String username);
+    public abstract boolean isUserLoggedIn(String username);
 
 }

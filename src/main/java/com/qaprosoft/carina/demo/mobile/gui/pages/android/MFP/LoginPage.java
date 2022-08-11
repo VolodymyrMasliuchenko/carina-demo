@@ -2,8 +2,9 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DashboardPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.HomeScreenTutorialPopUpBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,7 @@ public class LoginPage extends LoginPageBase {
     private ExtendedWebElement passwordInputField;
 
     @FindBy(id = "com.myfitnesspal.android:id/login_button")
-    private ExtendedWebElement submitButton;
+    private ExtendedWebElement loginButton;
 
     @FindBy(id = "com.myfitnesspal.android:id/forgot_password_button")
     private ExtendedWebElement forgotPasswordButton;
@@ -50,18 +51,8 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public boolean isSubmitButtonPresent() {
-        return submitButton.isElementPresent();
-    }
-
-    @Override
-    public boolean isForgotPasswordButtonPresent() {
-        return forgotPasswordButton.isElementPresent();
-    }
-
-    @Override
-    public boolean isContinueWithFacebookPresent() {
-        return continueWithFacebookButton.isElementPresent();
+    public boolean isLoginButtonPresent() {
+        return loginButton.isElementPresent();
     }
 
     @Override
@@ -80,13 +71,12 @@ public class LoginPage extends LoginPageBase {
     }
 
     @Override
-    public HomeScreenTutorialPopUpBase clickSubmitButton() {
-        submitButton.click();
-        return initPage(getDriver(), HomeScreenTutorialPopUpBase.class);
+    public void clickLoginButton() {
+        loginButton.click();
     }
 
     @Override
-    public HomeScreenTutorialPopUpBase loginToAccount(String email, String password) {
+    public DashboardPageBase loginToAccount(String email, String password) {
         //open welcome page
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
@@ -95,12 +85,15 @@ public class LoginPage extends LoginPageBase {
         //check if present
         Assert.assertTrue(loginPage.isEmailInputFieldPresent(), "Email input field isn't present");
         Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field isn't present");
-        Assert.assertTrue(loginPage.isSubmitButtonPresent(), "Submit button isn't present");
+        Assert.assertTrue(loginPage.isLoginButtonPresent(), "Submit button isn't present");
         //log in
         loginPage.typeEmail(email);
         loginPage.typePassword(password);
         Assert.assertEquals(loginPage.getEmailInputFieldText(), email, "Email input field isn't typed");
-        return loginPage.clickSubmitButton();
+        loginPage.clickLoginButton();
+        HomeScreenTutorialPopUpPageBase homeScreenTutorialPopUp = initPage(getDriver(), HomeScreenTutorialPopUpPageBase.class);
+        homeScreenTutorialPopUp.clickClosePopUpButton();
+        return initPage(getDriver(), DashboardPageBase.class);
     }
 
 

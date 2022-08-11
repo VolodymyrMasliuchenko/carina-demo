@@ -13,11 +13,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
     public abstract boolean isPasswordInputFieldPresent();
 
-    public abstract boolean isSubmitButtonPresent();
-
-    public abstract boolean isForgotPasswordButtonPresent();
-
-    public abstract boolean isContinueWithFacebookPresent();
+    public abstract boolean isLoginButtonPresent();
 
     public abstract String getEmailInputFieldText();
 
@@ -25,9 +21,9 @@ public abstract class LoginPageBase extends AbstractPage {
 
     public abstract void typePassword(String password);
 
-    public abstract HomeScreenTutorialPopUpBase clickSubmitButton();
+    public abstract void clickLoginButton();
 
-    public abstract HomeScreenTutorialPopUpBase loginToAccount(String email, String password);
+    public abstract DashboardPageBase loginToAccount(String email, String password);
 
 
 }
