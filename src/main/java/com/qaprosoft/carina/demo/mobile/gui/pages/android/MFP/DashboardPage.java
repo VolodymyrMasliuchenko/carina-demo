@@ -13,8 +13,15 @@ public class DashboardPage extends DashboardPageBase {
     @FindBy(xpath = "//android.view.View[@content-desc='User avatar']")
     private ExtendedWebElement userAvatar;
 
+    @FindBy(xpath = "//android.view.View[@content-desc='Calories card']")
+    private ExtendedWebElement dashboardCard;
+
     public DashboardPage(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isPageOpened() {
+        return dashboardCard.isElementPresent();
     }
 
     @Override
