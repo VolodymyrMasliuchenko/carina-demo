@@ -39,6 +39,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
 	public abstract String getPasswordInputField();
 
+
 	public abstract boolean isPrivacyPolicyCheckboxChecked();
 
 	public abstract CarinaDescriptionPageBase login();

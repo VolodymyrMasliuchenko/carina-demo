@@ -120,6 +120,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.GenderList.MALE), "Male radio buttons isn't present");
         softAssert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "Privacy policy checkbox isn't present");
 
+        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         //3 - type name, password -> name and password are typed
         loginPage.typeName(username);
         loginPage.typePassword(password);
@@ -138,6 +139,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened, user is not logged in");
         softAssert.assertAll();
+
     }
 
 }

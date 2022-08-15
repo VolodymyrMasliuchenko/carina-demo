@@ -42,6 +42,11 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
     }
 
     @Override
+    public boolean isNamePresent() {
+        return usernameInHamburgerMenu.isElementPresent();
+    }
+
+    @Override
     public WebViewPageBase navigateToWebViewPage() {
         leftMenuButton.click();
         webViewLink.click();
@@ -60,6 +65,11 @@ public class CarinaDescriptionPage extends CarinaDescriptionPageBase {
         leftMenuButton.click();
         mapLink.click();
         return initPage(getDriver(), MapsPageBase.class);
+    }
+
+    @Override
+    public void clickHamburgerMenu() {
+        hamburgerMenu.click();
     }
 
     @Override
