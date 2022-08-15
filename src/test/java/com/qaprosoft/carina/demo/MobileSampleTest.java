@@ -17,6 +17,7 @@ package com.qaprosoft.carina.demo;
 
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.LoginPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.android.WelcomePage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.Assert;
@@ -26,14 +27,9 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
+import org.testng.asserts.SoftAssert;
 
 
 public class MobileSampleTest implements IAbstractTest, IMobileUtils {
@@ -50,7 +46,7 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        loginPage.selectSex(LoginPageBase.genderList.MALE);
+        loginPage.selectSex(LoginPageBase.GenderList.MALE);
         loginPage.checkPrivacyPolicyCheckbox();
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
         Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
@@ -106,7 +102,8 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
     @Test()
     @MethodOwner(owner = "vmasliuchenko")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
-    public void testLoginUserWithVerify() {
+    public void testLoginFieldsValidation() {
+        SoftAssert softAssert = new SoftAssert();
         String username = "Vova";
         String password = RandomStringUtils.randomAlphabetic(10);
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
@@ -115,35 +112,34 @@ public class MobileSampleTest implements IAbstractTest, IMobileUtils {
         //1 - on Welcome page click Next btn -> Login page is opened
         LoginPageBase loginPage = welcomePage.clickNextBtn();
         Assert.assertTrue(loginPage.isPageOpened(), "Login page isn't opened");
-        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
 
         //2 - verify fields are present
-        Assert.assertTrue(loginPage.isNameInputFieldPresent(), "NameInputField isn't present");
-        Assert.assertTrue(loginPage.isPasswordInputFieldPresent(), "PasswordInputField isn't present");
-        Assert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.genderList.FEMALE), "Female radio button isn't present");
-        Assert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.genderList.MALE), "Male radio buttons isn't present");
-        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "PrivacyPolicyCheckbox isn't present");
+        softAssert.assertTrue(loginPage.isNameInputFieldPresent(), "Name input field isn't present");
+        softAssert.assertTrue(loginPage.isPasswordInputFieldPresent(), "Password input field isn't present");
+        softAssert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.GenderList.FEMALE), "Female radio button isn't present");
+        softAssert.assertTrue(loginPage.isSexRadioButtonsPresent(LoginPageBase.GenderList.MALE), "Male radio buttons isn't present");
+        softAssert.assertTrue(loginPage.isPrivacyPolicyCheckboxPresent(), "Privacy policy checkbox isn't present");
 
+        Assert.assertFalse(loginPage.isLoginBtnActive(), "Login button is active when it should be disabled");
         //3 - type name, password -> name and password are typed
         loginPage.typeName(username);
         loginPage.typePassword(password);
-        Assert.assertTrue(loginPage.isNameInputFieldTyped(username), "Username isn't typed");
-        Assert.assertTrue(loginPage.isPasswordInputFieldTyped(password), "Password isn't typed");
+        Assert.assertEquals(loginPage.getUsernameInputField(), username, "Username isn't typed");
+        Assert.assertEquals(loginPage.getPasswordInputField(), password, "Password isn't typed");
 
         //4 - choose sex -> male or female is checked
-       loginPage.selectSex(LoginPageBase.genderList.MALE);
-       Assert.assertTrue(loginPage.isSexRadioButtonsChecked(LoginPageBase.genderList.MALE), "Male radio button isn't checked");
-       Assert.assertFalse(loginPage.isSexRadioButtonsChecked(LoginPageBase.genderList.FEMALE), "Female radio button isn't checked");
+       loginPage.selectSex(LoginPageBase.GenderList.MALE);
+       Assert.assertTrue(loginPage.isSexRadioButtonsChecked(LoginPageBase.GenderList.MALE), "Male radio button isn't checked");
 
         //5 - tap Privacy Policy checkbox -> checkbox is checked
         loginPage.checkPrivacyPolicyCheckbox();
-        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxChecked(), "PrivacyPolicyCheckbox isn't checked");
+        Assert.assertTrue(loginPage.isPrivacyPolicyCheckboxChecked(), "Privacy policy checkbox isn't checked");
 
-        //6 - click Sign Up btn -> user is logined, Web View page is opened
+        //6 - click Sign Up btn -> user is logged in, Web View page is opened
         CarinaDescriptionPageBase carinaDescriptionPage = loginPage.clickLoginBtn();
-        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened");
-        carinaDescriptionPage.clickHamburgerMenu();
-        Assert.assertTrue(carinaDescriptionPage.isNamePresent(), "User isn't login");
+        Assert.assertTrue(carinaDescriptionPage.isPageOpened(), "Carina description page isn't opened, user is not logged in");
+        softAssert.assertAll();
+
     }
 
 }
