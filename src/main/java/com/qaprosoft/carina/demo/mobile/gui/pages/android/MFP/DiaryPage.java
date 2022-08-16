@@ -5,12 +5,14 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EditDiaryPageBase;
+import com.sun.istack.logging.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DiaryPageBase.class)
 public class DiaryPage extends DiaryPageBase {
+    private final Logger LOGGER = Logger.getLogger(DiaryPage.class);
 
     @FindBy(xpath = "(//android.widget.TextView[@text='Diary'])[1]")
     private ExtendedWebElement diaryPageTitle;
@@ -33,14 +35,11 @@ public class DiaryPage extends DiaryPageBase {
         return editDiaryButton.isElementPresent(3);
     }
 
-
-
     @Override
-    public void isGoalAndRemainingCaloriesEquals() {
+    public void cleanDiary() {
         if (!isEditDiaryButtonPresent()) {
-            Assert.assertEquals(getRemainingCalories(),getGoalCalories(), "Remaining calories isn't equals to goal calories");
+            LOGGER.info("Edit diary button isn't present!");
         } else {
-            Assert.assertTrue(isEditDiaryButtonPresent(), "Edit diary button isn't present");
             editDiaryButton.click(3);
             EditDiaryPageBase editDiaryPage = initPage(getDriver(), EditDiaryPageBase.class);
             editDiaryPage.clearDiaryFromEditPage();

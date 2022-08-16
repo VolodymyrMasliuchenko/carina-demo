@@ -18,7 +18,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public void isGoalAndRemainingCaloriesEquals() {
+    public void cleanDiary() {
         throw new NotImplementedException("Not implemented");
     }
 

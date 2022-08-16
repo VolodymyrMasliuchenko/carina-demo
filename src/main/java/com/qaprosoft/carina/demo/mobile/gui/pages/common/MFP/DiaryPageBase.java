@@ -11,7 +11,7 @@ public abstract class DiaryPageBase extends AbstractPage {
 
     public abstract boolean isEditDiaryButtonPresent();
 
-    public abstract void isGoalAndRemainingCaloriesEquals();
+    public abstract void cleanDiary();
 
     public abstract int getRemainingCalories();
 

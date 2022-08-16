@@ -57,8 +57,8 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
-        diaryPage.isGoalAndRemainingCaloriesEquals();
-
+        diaryPage.cleanDiary();
+        Assert.assertEquals(diaryPage.getRemainingCalories(),diaryPage.getGoalCalories(), "Remaining calories isn't equals to goal calories");
     }
 
 }
