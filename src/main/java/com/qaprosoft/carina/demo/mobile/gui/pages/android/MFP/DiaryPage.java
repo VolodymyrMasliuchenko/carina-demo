@@ -3,7 +3,6 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DeleteDiaryPopUpPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EditDiaryPageBase;
 import org.openqa.selenium.WebDriver;
@@ -44,8 +43,7 @@ public class DiaryPage extends DiaryPageBase {
             Assert.assertTrue(isEditDiaryButtonPresent(), "Edit diary button isn't present");
             editDiaryButton.click(3);
             EditDiaryPageBase editDiaryPage = initPage(getDriver(), EditDiaryPageBase.class);
-            DeleteDiaryPopUpPageBase deleteDiaryPopUpPage = editDiaryPage.clearDiaryFromEditPage();
-            deleteDiaryPopUpPage.submitDeleteDiary();
+            editDiaryPage.clearDiaryFromEditPage();
         }
     }
 

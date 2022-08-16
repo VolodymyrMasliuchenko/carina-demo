@@ -8,6 +8,6 @@ public abstract class EditDiaryPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract DeleteDiaryPopUpPageBase clearDiaryFromEditPage();
+    public abstract DiaryPageBase clearDiaryFromEditPage();
 
 }
