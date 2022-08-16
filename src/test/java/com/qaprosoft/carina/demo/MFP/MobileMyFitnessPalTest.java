@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.MFP;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.*;
@@ -11,15 +12,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
-
-    final String email = "test_weight_user@gmail.com";
-    final String password = "";
     @Test
     @MethodOwner(owner = "vmasliuchenko")
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginPageMyFitnessPal() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(email, password);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
     }
 
     @Test
@@ -28,7 +26,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestRailCaseId("1")
     public void testBottomMenu() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(email, password);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
 
@@ -48,4 +46,19 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         DashboardPageBase dashboardPage = (DashboardPageBase) commonPage.openBottomMenuItem(BottomMenu.DASHBOARD);
         Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't opened");
     }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Check that Goal calories value equals Remaining value.", value = {"mobile","regression"})
+    @TestRailCaseId("1")
+    public void testGoalAndRemainingCalories() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
+        diaryPage.isGoalAndRemainingCaloriesEquals();
+
+    }
+
 }
