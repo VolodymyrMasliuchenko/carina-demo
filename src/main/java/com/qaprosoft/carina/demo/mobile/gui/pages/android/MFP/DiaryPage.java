@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EditDiaryPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.QuickAddPageBase;
 import com.sun.istack.logging.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -26,8 +27,21 @@ public class DiaryPage extends DiaryPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/goal")
     private ExtendedWebElement goalCalories;
 
+    @FindBy(xpath = "(//android.widget.Button)[2]")
+    private ExtendedWebElement moreOptionFoodButton;
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Quick Add']")
+    private ExtendedWebElement quickAddButton;
+
+    @FindBy(xpath = "//android.widget.Button[@content-desc='NO THANKS']")
+    private ExtendedWebElement noThanksGuidePopUpButton;
+
     public DiaryPage(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isPageOpened() {
+        return diaryPageTitle.isElementPresent();
     }
 
     @Override
@@ -58,8 +72,13 @@ public class DiaryPage extends DiaryPageBase {
         return Integer.parseInt(replacedGoal.replace(",",""));
     }
 
-    public boolean isPageOpened() {
-        return diaryPageTitle.isElementPresent();
+    @Override
+    public void addQuickFood() {
+        moreOptionFoodButton.click(3);
+        quickAddButton.click(3);
+        noThanksGuidePopUpButton.click(3);
+        QuickAddPageBase quickAddPage = initPage(getDriver(), QuickAddPageBase.class);
+        quickAddPage.addQuickFood("1","1","1");
     }
 
 

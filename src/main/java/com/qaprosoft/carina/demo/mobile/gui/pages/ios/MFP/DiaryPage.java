@@ -31,4 +31,9 @@ public class DiaryPage extends DiaryPageBase {
     public int getGoalCalories() {
         throw new NotImplementedException("Not implemented");
     }
+
+    @Override
+    public void addQuickFood() {
+        throw new NotImplementedException("Not implemented");
+    }
 }

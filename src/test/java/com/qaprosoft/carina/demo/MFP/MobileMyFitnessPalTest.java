@@ -50,7 +50,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @Test
     @MethodOwner(owner = "vmasliuchenko")
     @TestLabel(name = "Check that Goal calories value equals Remaining value.", value = {"mobile","regression"})
-    @TestRailCaseId("1")
+    @TestRailCaseId("2")
     public void testGoalAndRemainingCalories() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
@@ -59,6 +59,19 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
         diaryPage.cleanDiary();
         Assert.assertEquals(diaryPage.getRemainingCalories(),diaryPage.getGoalCalories(), "Remaining calories isn't equals to goal calories");
+    }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Calories validation on Quick Add page.", value = {"mobile","regression"})
+    @TestRailCaseId("3")
+    public void testQuickAddPage() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
+        diaryPage.addQuickFood();
     }
 
 }
