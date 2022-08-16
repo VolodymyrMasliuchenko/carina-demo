@@ -33,7 +33,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public void addQuickFood() {
+    public DiaryPageBase quickAddOption(String fatTextField, String carbsTextField, String proteinTextField) {
         throw new NotImplementedException("Not implemented");
     }
 }

@@ -9,7 +9,6 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.QuickAddPageBase;
 import com.sun.istack.logging.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = DiaryPageBase.class)
 public class DiaryPage extends DiaryPageBase {
@@ -73,12 +72,11 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public void addQuickFood() {
+    public DiaryPageBase quickAddOption(String fatTextField, String carbsTextField, String proteinTextField) {
         moreOptionFoodButton.click(3);
         quickAddButton.click(3);
         noThanksGuidePopUpButton.click(3);
-        QuickAddPageBase quickAddPage = initPage(getDriver(), QuickAddPageBase.class);
-        quickAddPage.addQuickFood("1","1","1");
+        return initPage(getDriver(), QuickAddPageBase.class).addQuickFood(fatTextField,carbsTextField,proteinTextField);
     }
 
 

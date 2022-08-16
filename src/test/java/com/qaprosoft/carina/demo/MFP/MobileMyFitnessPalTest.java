@@ -71,7 +71,8 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
-        diaryPage.addQuickFood();
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
+        diaryPage.quickAddOption("1", "1", "1");
     }
 
 }

@@ -8,6 +8,8 @@ public abstract class QuickAddPageBase extends AbstractPage {
         super(driver);
     }
 
+    public abstract String getCaloriesTextField();
+
     public abstract DiaryPageBase addQuickFood(String fat, String carbs, String protein);
 
 }

@@ -35,19 +35,24 @@ public class QuickAddPage extends QuickAddPageBase {
         super(driver);
     }
 
+    @Override
+    public String getCaloriesTextField() {
+        return caloriesTextField.getText();
+    }
+
     public boolean isPageOpened() {
-        return quickAddPageTitle.isElementPresent();
+        return quickAddPageTitle.isElementPresent(3);
     }
 
     @Override
-    public DiaryPageBase addQuickFood(String fat, String carbs, String protein) {
-        fatTextField.click(3);
-        fatTextField.type(fat,1);
-        carbsTextField.click(3);
-        carbsTextField.type(carbs,1);
-        proteinTextField.click(3);
-        proteinTextField.type(protein,1);
-        Assert.assertEquals(caloriesTextField.getText(),"17", "Calories count isn't 17");
+    public DiaryPageBase addQuickFood(String fatTextField, String carbsTextField, String proteinTextField) {
+        this.fatTextField.click(3);
+        this.fatTextField.type(fatTextField,1);
+        this.carbsTextField.click(3);
+        this.carbsTextField.type(carbsTextField,1);
+        this.proteinTextField.click(3);
+        this.proteinTextField.type(proteinTextField,1);
+        Assert.assertEquals(getCaloriesTextField(),"17", "Calories count isn't 17");
         doneQuickAddButton.click(3);
         return initPage(getDriver(), DiaryPageBase.class);
     }
