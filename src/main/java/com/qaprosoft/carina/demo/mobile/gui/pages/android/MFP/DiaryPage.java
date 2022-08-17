@@ -72,7 +72,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public QuickAddPageBase quickAddOption() {
+    public QuickAddPageBase openQuickAddOption() {
         moreOptionFoodButton.click(3);
         quickAddButton.click(3);
         noThanksGuidePopUpButton.click(3);

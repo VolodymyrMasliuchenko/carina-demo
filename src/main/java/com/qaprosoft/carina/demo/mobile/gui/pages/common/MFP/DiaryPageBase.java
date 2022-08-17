@@ -17,6 +17,6 @@ public abstract class DiaryPageBase extends AbstractPage {
 
     public abstract int getGoalCalories();
 
-    public abstract QuickAddPageBase quickAddOption();
+    public abstract QuickAddPageBase openQuickAddOption();
 
 }

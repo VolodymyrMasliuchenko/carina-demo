@@ -67,6 +67,10 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestRailCaseId("3")
     public void testQuickAddPage() {
         int expectedCaloriesCount = 17;
+        int fatCount = 1;
+        int carbsCount = 1;
+        int proteinCount = 1;
+
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
@@ -74,10 +78,10 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
         Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
 
-        QuickAddPageBase quickAddPage = diaryPage.quickAddOption();
+        QuickAddPageBase quickAddPage = diaryPage.openQuickAddOption();
         Assert.assertTrue(quickAddPage.isPageOpened(), "Quick add page isn't opened");
-        quickAddPage.quickAddNutrient(1,1,1);
-        Assert.assertEquals(quickAddPage.getCaloriesInt(),expectedCaloriesCount, "Calories count isn't 17");
+        quickAddPage.quickAddNutrient(fatCount,carbsCount,proteinCount);
+        Assert.assertEquals(quickAddPage.getQuickAddCalories(),expectedCaloriesCount, "Calories count isn't 17");
         quickAddPage.submitNutrient();
     }
 

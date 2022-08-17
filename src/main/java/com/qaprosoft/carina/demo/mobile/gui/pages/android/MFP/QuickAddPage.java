@@ -32,7 +32,7 @@ public class QuickAddPage extends QuickAddPageBase {
         super(driver);
     }
 
-    public int getCaloriesInt() {
+    public int getQuickAddCalories() {
         return Integer.parseInt(caloriesTextField.getText());
     }
 
@@ -41,13 +41,13 @@ public class QuickAddPage extends QuickAddPageBase {
     }
 
     @Override
-    public void quickAddNutrient(int fatInt, int carbsInt, int proteinInt) {
+    public void quickAddNutrient(int fat, int carbs, int protein) {
         this.fatTextField.click(3);
-        this.fatTextField.type(String.valueOf(fatInt),1);
+        this.fatTextField.type(String.valueOf(fat));
         this.carbsTextField.click(3);
-        this.carbsTextField.type(String.valueOf(carbsInt),1);
+        this.carbsTextField.type(String.valueOf(carbs));
         this.proteinTextField.click(3);
-        this.proteinTextField.type(String.valueOf(proteinInt),1);
+        this.proteinTextField.type(String.valueOf(protein));
     }
 
     @Override

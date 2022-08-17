@@ -14,7 +14,7 @@ public class QuickAddPage extends QuickAddPageBase {
     }
 
     @Override
-    public int getCaloriesInt() {
+    public int getQuickAddCalories() {
         throw new NotImplementedException("Not implemented");
     }
 

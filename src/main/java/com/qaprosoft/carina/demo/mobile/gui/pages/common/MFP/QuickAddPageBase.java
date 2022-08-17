@@ -8,7 +8,7 @@ public abstract class QuickAddPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract int getCaloriesInt();
+    public abstract int getQuickAddCalories();
 
     public abstract DiaryPageBase submitNutrient();
 

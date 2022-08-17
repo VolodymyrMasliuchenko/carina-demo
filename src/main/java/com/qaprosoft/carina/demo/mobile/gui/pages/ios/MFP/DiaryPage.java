@@ -34,7 +34,7 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public QuickAddPageBase quickAddOption() {
+    public QuickAddPageBase openQuickAddOption() {
         throw new NotImplementedException("Not implemented");
     }
 }
