@@ -66,13 +66,19 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "Calories validation on Quick Add page.", value = {"mobile","regression"})
     @TestRailCaseId("3")
     public void testQuickAddPage() {
+        int expectedCaloriesCount = 17;
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
         Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
-        diaryPage.quickAddOption("1", "1", "1");
+
+        QuickAddPageBase quickAddPage = diaryPage.quickAddOption();
+        Assert.assertTrue(quickAddPage.isPageOpened(), "Quick add page isn't opened");
+        quickAddPage.quickAddNutrient(1,1,1);
+        Assert.assertEquals(quickAddPage.getCaloriesInt(),expectedCaloriesCount, "Calories count isn't 17");
+        quickAddPage.submitNutrient();
     }
 
 }

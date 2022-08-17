@@ -3,12 +3,9 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EditDiaryPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.QuickAddPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = QuickAddPageBase.class)
 public class QuickAddPage extends QuickAddPageBase {
@@ -35,9 +32,8 @@ public class QuickAddPage extends QuickAddPageBase {
         super(driver);
     }
 
-    @Override
-    public String getCaloriesTextField() {
-        return caloriesTextField.getText();
+    public int getCaloriesInt() {
+        return Integer.parseInt(caloriesTextField.getText());
     }
 
     public boolean isPageOpened() {
@@ -45,18 +41,19 @@ public class QuickAddPage extends QuickAddPageBase {
     }
 
     @Override
-    public DiaryPageBase addQuickFood(String fatTextField, String carbsTextField, String proteinTextField) {
+    public void quickAddNutrient(int fatInt, int carbsInt, int proteinInt) {
         this.fatTextField.click(3);
-        this.fatTextField.type(fatTextField,1);
+        this.fatTextField.type(String.valueOf(fatInt),1);
         this.carbsTextField.click(3);
-        this.carbsTextField.type(carbsTextField,1);
+        this.carbsTextField.type(String.valueOf(carbsInt),1);
         this.proteinTextField.click(3);
-        this.proteinTextField.type(proteinTextField,1);
-        Assert.assertEquals(getCaloriesTextField(),"17", "Calories count isn't 17");
+        this.proteinTextField.type(String.valueOf(proteinInt),1);
+    }
+
+    @Override
+    public DiaryPageBase submitNutrient() {
         doneQuickAddButton.click(3);
         return initPage(getDriver(), DiaryPageBase.class);
     }
-
-
 
 }

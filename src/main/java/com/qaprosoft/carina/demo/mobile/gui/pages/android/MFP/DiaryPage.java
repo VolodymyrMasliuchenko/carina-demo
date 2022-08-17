@@ -72,11 +72,11 @@ public class DiaryPage extends DiaryPageBase {
     }
 
     @Override
-    public DiaryPageBase quickAddOption(String fatTextField, String carbsTextField, String proteinTextField) {
+    public QuickAddPageBase quickAddOption() {
         moreOptionFoodButton.click(3);
         quickAddButton.click(3);
         noThanksGuidePopUpButton.click(3);
-        return initPage(getDriver(), QuickAddPageBase.class).addQuickFood(fatTextField,carbsTextField,proteinTextField);
+        return initPage(getDriver(), QuickAddPageBase.class);
     }
 
 

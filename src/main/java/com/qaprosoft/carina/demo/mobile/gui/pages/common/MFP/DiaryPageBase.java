@@ -17,6 +17,6 @@ public abstract class DiaryPageBase extends AbstractPage {
 
     public abstract int getGoalCalories();
 
-    public abstract DiaryPageBase quickAddOption(String fatTextField, String carbsTextField, String proteinTextField);
+    public abstract QuickAddPageBase quickAddOption();
 
 }

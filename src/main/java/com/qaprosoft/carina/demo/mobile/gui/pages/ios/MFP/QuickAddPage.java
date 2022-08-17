@@ -14,12 +14,17 @@ public class QuickAddPage extends QuickAddPageBase {
     }
 
     @Override
-    public String getCaloriesTextField() {
+    public int getCaloriesInt() {
         throw new NotImplementedException("Not implemented");
     }
 
     @Override
-    public DiaryPageBase addQuickFood(String fat, String carbs, String protein) {
+    public DiaryPageBase submitNutrient() {
+        throw new NotImplementedException("Not implemented");
+    }
+
+    @Override
+    public void quickAddNutrient(int fatInt, int carbsInt, int proteinInt) {
         throw new NotImplementedException("Not implemented");
     }
 }
