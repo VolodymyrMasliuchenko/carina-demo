@@ -19,4 +19,6 @@ public abstract class DiaryPageBase extends AbstractPage {
 
     public abstract QuickAddPageBase openQuickAddOption();
 
+    public abstract CustomDashboardPageBase openMoreDashboardOption();
+
 }

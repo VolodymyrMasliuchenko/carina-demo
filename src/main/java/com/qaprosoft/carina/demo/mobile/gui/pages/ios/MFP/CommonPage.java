@@ -27,4 +27,9 @@ public class CommonPage extends CommonPageBase {
     public boolean isElementBottomMenuPresent(BottomMenu menu) {
         throw new NotImplementedException("Not implemented");
     }
+
+    @Override
+    public boolean isItemByTextPresent(String item) {
+        throw new NotImplementedException("Not implemented");
+    }
 }

@@ -6,6 +6,8 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.BottomMenu;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.CustomDashboardItems;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Intefaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.agent.core.annotation.TestRailCaseId;
 import org.testng.Assert;
@@ -83,6 +85,61 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         quickAddPage.quickAddNutrient(fatCount,carbsCount,proteinCount);
         Assert.assertEquals(quickAddPage.getQuickAddCalories(),expectedCaloriesCount, "Calories count isn't 17");
         quickAddPage.submitNutrient();
+    }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Custom dashboard validation.", value = {"mobile","regression"})
+    @TestRailCaseId("4")
+    public void testCustomDashboardValidation() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
+
+        CustomDashboardPageBase customDashboardPage = diaryPage.openMoreDashboardOption();
+        Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
+        customDashboardPage.chooseDashboardItem(CustomDashboardItems.CALORIEFOCUS);
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.GOAL), "Wrong text, here should be 'Goal'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FOOD), "Wrong text, here should be 'Food'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.EXERCISE), "Wrong text, here should be 'Exercise'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.REMAINING), "Wrong text, here should be 'Remaining'");
+
+        diaryPage.openMoreDashboardOption();
+        Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
+        customDashboardPage.chooseDashboardItem(CustomDashboardItems.MACROUNUTRIENTFOCUS);
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS), "Wrong text, here should be 'Carbs (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), "Wrong text, here should be 'Fat (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN), "Wrong text, here should be 'Protein (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES), "Wrong text, here should be 'Calories'");
+
+        diaryPage.openMoreDashboardOption();
+        Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
+        customDashboardPage.chooseDashboardItem(CustomDashboardItems.HEARTHEALTHY);
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), "Wrong text, here should be 'Fat (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.SODIUM), "Wrong text, here should be 'Sodium (mg)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CHOLESTEROL), "Wrong text, here should be 'Cholesterol (mg)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES), "Wrong text, here should be 'Calories'");
+
+        diaryPage.openMoreDashboardOption();
+        Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
+        customDashboardPage.chooseDashboardItem(CustomDashboardItems.LOWCARB);
+        customDashboardPage.closePopUp();
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS), "Wrong text, here should be 'Carbs (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.SUGAR), "Wrong text, here should be 'Sugar (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FIBER), "Wrong text, here should be 'Fiber (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES), "Wrong text, here should be 'Calories'");
+
+        diaryPage.openMoreDashboardOption();
+        Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
+        CustomSummaryPageBase customSummaryPage = customDashboardPage.openCustomItem();
+        customSummaryPage.submitSettings();
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN), "Wrong text, here should be 'Protein (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), "Wrong text, here should be 'Fat (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS), "Wrong text, here should be 'Carbs (g)'");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES), "Wrong text, here should be 'Calories'");
     }
 
 }

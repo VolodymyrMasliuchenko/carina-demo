@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.CustomDashboardPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EditDiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.QuickAddPageBase;
@@ -34,6 +35,9 @@ public class DiaryPage extends DiaryPageBase {
 
     @FindBy(xpath = "//android.widget.Button[@content-desc='NO THANKS']")
     private ExtendedWebElement noThanksGuidePopUpButton;
+
+    @FindBy(xpath = "//android.widget.ImageView[@resource-id='com.myfitnesspal.android:id/more']")
+    private ExtendedWebElement moreOptionDashBoardButton;
 
     public DiaryPage(WebDriver driver) {
         super(driver);
@@ -77,6 +81,12 @@ public class DiaryPage extends DiaryPageBase {
         quickAddButton.click(3);
         noThanksGuidePopUpButton.click(3);
         return initPage(getDriver(), QuickAddPageBase.class);
+    }
+
+    @Override
+    public CustomDashboardPageBase openMoreDashboardOption() {
+        moreOptionDashBoardButton.click(3);
+        return initPage(getDriver(), CustomDashboardPageBase.class);
     }
 
 

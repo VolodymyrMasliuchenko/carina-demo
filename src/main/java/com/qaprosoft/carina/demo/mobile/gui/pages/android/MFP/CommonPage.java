@@ -12,9 +12,11 @@ import org.testng.Assert;
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CommonPageBase.class)
 public class CommonPage extends CommonPageBase {
 
-    // //*[contains(@resource-id,'bottomNavigationBar')]//*[contains(@text, '%s')]
     @FindBy(xpath = "//*[contains(@resource-id,'com.myfitnesspal.android:id/bottomNavigationBar')]//*[contains(@text, '%s')]")
     private ExtendedWebElement bottomMenuIcon;
+
+    @FindBy(xpath = "//*[contains(@text, '%s')]")
+    private ExtendedWebElement elementWithText;
 
     public CommonPage(WebDriver driver) {
         super(driver);
@@ -36,6 +38,11 @@ public class CommonPage extends CommonPageBase {
     @Override
     public boolean isElementBottomMenuPresent(BottomMenu menu) {
         return bottomMenuIcon.format(menu.getOptionAndroid()).isElementPresent();
+    }
+
+    @Override
+    public boolean isItemByTextPresent(String item) {
+        return  elementWithText.format(item).isElementPresent();
     }
 
 }
