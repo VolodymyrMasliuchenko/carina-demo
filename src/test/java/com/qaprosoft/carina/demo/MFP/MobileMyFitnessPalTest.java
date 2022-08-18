@@ -89,8 +89,8 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
 
     @Test
     @MethodOwner(owner = "vmasliuchenko")
-    @TestLabel(name = "Custom dashboard validation.", value = {"mobile","regression"})
-    @TestRailCaseId("4")
+    @TestLabel(name = "Custom dashboard validation, custom Summary page validation.", value = {"mobile","regression"})
+    @TestRailCaseId("4,5")
     public void testCustomDashboardValidation() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
         loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
@@ -99,6 +99,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
         Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
 
+        //Custom dashboard validation.
         CustomDashboardPageBase customDashboardPage = diaryPage.openMoreDashboardOption();
         Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
         customDashboardPage.chooseDashboardItem(CustomDashboardItems.CALORIEFOCUS);
@@ -132,9 +133,13 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FIBER), "Wrong text, here should be 'Fiber (g)'");
         Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES), "Wrong text, here should be 'Calories'");
 
+        //Custom Summary page validation.
         diaryPage.openMoreDashboardOption();
         Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
         CustomSummaryPageBase customSummaryPage = customDashboardPage.openCustomItem();
+        Assert.assertTrue(commonPage.isItemByTextChecked(IConstants.FATCUSTOMPAGE), "Fat isn't checked");
+        Assert.assertTrue(commonPage.isItemByTextChecked(IConstants.CARBSCUSTOMPAGE), "Carbohydrates isn't checked");
+        Assert.assertTrue(commonPage.isItemByTextChecked(IConstants.PROTEINCUSTOMPAGE), "Protein isn't checked");
         customSummaryPage.submitSettings();
         Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN), "Wrong text, here should be 'Protein (g)'");
         Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), "Wrong text, here should be 'Fat (g)'");
