@@ -14,4 +14,9 @@ public interface IConstants {
     String CHOLESTEROL = "Cholesterol (mg)";
     String SUGAR = "Sugar (g)";
     String FIBER = "Fiber (g)";
+
+    //Custom dashboard nutrient options
+    String FIRST_OPTION = "3 of 3 nutrients selected.";
+    String SECOND_OPTION = "2 of 3 nutrients selected.";
+    String THIRD_OPTION = "4 nutrients selected. Please select only 3.";
 }

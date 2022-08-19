@@ -41,6 +41,17 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
     }
 
     @Override
+    public void uncheckNutrient(CustomSummaryPageItems customSummaryPageItems) {
+        swipe(nutrientItem.format(customSummaryPageItems.getAndroidOption()), Direction.VERTICAL, 3,1000);
+        nutrientItem.format(customSummaryPageItems.getAndroidOption()).uncheck();
+    }
+
+    @Override
+    public boolean isDoneButtonActive() {
+        return Boolean.parseBoolean(doneButton.getAttribute("enabled"));
+    }
+
+    @Override
     public boolean swipe(ExtendedWebElement element,Direction direction, int count, int duration) {
         return super.swipe(element, direction, count, duration);
     }

@@ -15,5 +15,8 @@ public abstract class CustomSummaryPageBase extends AbstractPage implements IMob
     public abstract boolean isNutrientByNameChecked(CustomSummaryPageItems customSummaryPageItems);
 
     public abstract void checkNutrient(CustomSummaryPageItems customSummaryPageItems);
+    public abstract void uncheckNutrient(CustomSummaryPageItems customSummaryPageItems);
+
+    public abstract boolean isDoneButtonActive();
 
 }

@@ -11,6 +11,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.CustomSummary
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Intefaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.agent.core.annotation.TestRailCaseId;
+import org.checkerframework.checker.units.qual.C;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -106,6 +107,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         CustomDashboardPageBase customDashboardPage = diaryPage.openMoreDashboardOption();
         Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
         customDashboardPage.chooseDashboardItem(CustomDashboardItems.CALORIE_FOCUS);
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.GOAL), IConstants.GOAL + "isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FOOD), IConstants.FOOD + "isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.EXERCISE), IConstants.EXERCISE + "isn't present on Diary page");
@@ -114,6 +116,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         diaryPage.openMoreDashboardOption();
         Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
         customDashboardPage.chooseDashboardItem(CustomDashboardItems.MACROUNUTRIENT_FOCUS);
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS), IConstants.CARBS + "isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), IConstants.FAT + "isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN), IConstants.PROTEIN + "isn't present on Diary page");
@@ -122,6 +125,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         diaryPage.openMoreDashboardOption();
         Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
         customDashboardPage.chooseDashboardItem(CustomDashboardItems.HEART_HEALTHY);
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), IConstants.FAT + "isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.SODIUM), IConstants.SODIUM + "isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CHOLESTEROL), IConstants.CHOLESTEROL + " isn't present on Diary page");
@@ -131,6 +135,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
         customDashboardPage.chooseDashboardItem(CustomDashboardItems.LOWCARB);
         customDashboardPage.closePopUp();
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS), IConstants.CARBS + " isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.SUGAR), IConstants.SUGAR + " isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FIBER), IConstants.FIBER + " isn't present on Diary page");
@@ -147,11 +152,41 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         customSummaryPage.checkNutrient(CustomSummaryPageItems.PROTEIN);
         softAssert.assertTrue(customSummaryPage.isNutrientByNameChecked(CustomSummaryPageItems.PROTEIN), "Protein isn't checked");
         customSummaryPage.submitSettings();
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.PROTEIN), IConstants.PROTEIN + " isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.FAT), IConstants.FAT + " isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CARBS), IConstants.CARBS + " isn't present on Diary page");
         softAssert.assertTrue(commonPage.isItemByTextPresent(IConstants.CALORIES), IConstants.CALORIES + " isn't present on Diary page");
         softAssert.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Custom Summary nutrients validation.", value = {"mobile","regression"})
+    @TestRailCaseId("6")
+    public void testCustomSummaryNutrientsValidation() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
+        Assert.assertTrue(diaryPage.isPageOpened(), "Diary page isn't opened");
+
+        CustomDashboardPageBase customDashboardPage = diaryPage.openMoreDashboardOption();
+        Assert.assertTrue(customDashboardPage.isPageOpened(), "Custom dashboard page isn't opened");
+        CustomSummaryPageBase customSummaryPage = (CustomSummaryPageBase) customDashboardPage.chooseDashboardItem(CustomDashboardItems.CUSTOM);
+        customSummaryPage.checkNutrient(CustomSummaryPageItems.FAT);
+        customSummaryPage.checkNutrient(CustomSummaryPageItems.CARBOHYDRATES);
+        customSummaryPage.checkNutrient(CustomSummaryPageItems.PROTEIN);
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FIRST_OPTION), IConstants.FIRST_OPTION + " text isn't present");
+        Assert.assertTrue(customSummaryPage.isDoneButtonActive(), "Done button isn't active");
+        customSummaryPage.uncheckNutrient(CustomSummaryPageItems.FAT);
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.SECOND_OPTION), IConstants.SECOND_OPTION + " text isn't present");
+        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Done button is active");
+        customSummaryPage.checkNutrient(CustomSummaryPageItems.FAT);
+        customSummaryPage.checkNutrient(CustomSummaryPageItems.SAT_FAT);
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.THIRD_OPTION), IConstants.THIRD_OPTION + " text isn't present");
+        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Done button is active");
     }
 
 }
