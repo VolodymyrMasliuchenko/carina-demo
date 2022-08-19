@@ -32,9 +32,4 @@ public class CommonPage extends CommonPageBase {
     public boolean isItemByTextPresent(String item) {
         throw new NotImplementedException("Not implemented");
     }
-
-    @Override
-    public boolean isItemByTextChecked(String item) {
-        throw new NotImplementedException("Not implemented");
-    }
 }

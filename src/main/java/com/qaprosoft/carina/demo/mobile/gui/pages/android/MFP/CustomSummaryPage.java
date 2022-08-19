@@ -5,13 +5,18 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.CustomSummaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.CustomSummaryPageItems;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CustomSummaryPageBase.class)
 public class CustomSummaryPage extends CustomSummaryPageBase {
 
     @ExtendedFindBy(accessibilityId = "Done")
     private ExtendedWebElement doneButton;
+
+    @FindBy(xpath = "//*[contains(@resource-id, 'com.myfitnesspal.android:id/%s')]")
+    private ExtendedWebElement nutrientItem;
 
     public CustomSummaryPage(WebDriver driver) {
         super(driver);
@@ -23,5 +28,20 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
         return initPage(getDriver(), DiaryPageBase.class);
     }
 
+    @Override
+    public boolean isNutrientByNameChecked(CustomSummaryPageItems customSummaryPageItems) {
+        swipe(nutrientItem.format(customSummaryPageItems.getAndroidOption()), Direction.VERTICAL, 3,1000);
+        return nutrientItem.format(customSummaryPageItems.getAndroidOption()).isChecked();
+    }
 
+    @Override
+    public void checkNutrient(CustomSummaryPageItems customSummaryPageItems) {
+        swipe(nutrientItem.format(customSummaryPageItems.getAndroidOption()), Direction.VERTICAL, 3,1000);
+        nutrientItem.format(customSummaryPageItems.getAndroidOption()).check();
+    }
+
+    @Override
+    public boolean swipe(ExtendedWebElement element,Direction direction, int count, int duration) {
+        return super.swipe(element, direction, count, duration);
+    }
 }

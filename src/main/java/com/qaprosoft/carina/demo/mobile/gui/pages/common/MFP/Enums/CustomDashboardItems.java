@@ -5,28 +5,24 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.CustomSummaryPageBa
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
 
 public enum CustomDashboardItems {
+    //
+    CALORIE_FOCUS("rbCaloriesRem", DiaryPageBase.class),
+    MACROUNUTRIENT_FOCUS("rbMacrosRem", DiaryPageBase.class),
+    HEART_HEALTHY("rbHeartHealthy", DiaryPageBase.class),
+    LOWCARB("rbLowCarb", DiaryPageBase.class),
+    CUSTOM("rbCustomSummary", CustomSummaryPageBase.class);
 
-    CALORIEFOCUS("rbCaloriesRem","", DiaryPageBase.class),
-    MACROUNUTRIENTFOCUS("rbMacrosRem","", DiaryPageBase.class),
-    HEARTHEALTHY("rbHeartHealthy","", DiaryPageBase.class),
-    LOWCARB("rbLowCarb","", DiaryPageBase.class);
+    private String androidId;
 
-    private String androidOption;
-    private String iosOption;
     private Class<? extends AbstractPage> page;
 
-    CustomDashboardItems(String androidOption, String iosOption, Class<? extends AbstractPage> page) {
-        this.androidOption = androidOption;
-        this.iosOption = iosOption;
+    CustomDashboardItems(String androidId, Class<? extends AbstractPage> page) {
+        this.androidId = androidId;
         this.page = page;
     }
 
-    public String getAndroidOption() {
-        return androidOption;
-    }
-
-    public String getIosOption() {
-        return iosOption;
+    public String getAndroidId() {
+        return androidId;
     }
 
     public Class<? extends AbstractPage> getPage() {

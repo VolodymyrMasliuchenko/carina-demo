@@ -9,9 +9,7 @@ public abstract class CustomDashboardPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract DiaryPageBase chooseDashboardItem(CustomDashboardItems item);
-
-    public abstract CustomSummaryPageBase openCustomItem();
+    public abstract AbstractPage chooseDashboardItem(CustomDashboardItems item);
 
     public abstract void closePopUp();
 

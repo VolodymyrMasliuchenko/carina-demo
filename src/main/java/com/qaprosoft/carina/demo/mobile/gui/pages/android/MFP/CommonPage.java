@@ -41,13 +41,8 @@ public class CommonPage extends CommonPageBase {
     }
 
     @Override
-    public boolean isItemByTextPresent(String item) {
-        return  elementWithText.format(item).isElementPresent();
-    }
-
-    @Override
-    public boolean isItemByTextChecked(String item) {
-        return elementWithText.format(item).isChecked();
+    public boolean isItemByTextPresent(String text) {
+        return  elementWithText.format(text).isElementPresent();
     }
 
 }

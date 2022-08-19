@@ -16,8 +16,6 @@ public abstract class CommonPageBase extends AbstractPage {
 
     public abstract boolean isElementBottomMenuPresent(BottomMenu menu);
 
-    public abstract boolean isItemByTextPresent(String item);
-
-    public abstract boolean isItemByTextChecked(String item);
+    public abstract boolean isItemByTextPresent(String text);
 
 }

@@ -20,11 +20,6 @@ public class CustomDashboardPage extends CustomDashboardPageBase {
     }
 
     @Override
-    public CustomSummaryPageBase openCustomItem() {
-        throw new NotImplementedException("Not implemented");
-    }
-
-    @Override
     public void closePopUp() {
         throw new NotImplementedException("Not implemented");
     }

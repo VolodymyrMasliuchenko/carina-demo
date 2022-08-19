@@ -14,10 +14,4 @@ public interface IConstants {
     String CHOLESTEROL = "Cholesterol (mg)";
     String SUGAR = "Sugar (g)";
     String FIBER = "Fiber (g)";
-
-    String FATCUSTOMPAGE = "Fat";
-
-    String CARBSCUSTOMPAGE = "Carbohydrates";
-
-    String PROTEINCUSTOMPAGE = "Protein";
 }
