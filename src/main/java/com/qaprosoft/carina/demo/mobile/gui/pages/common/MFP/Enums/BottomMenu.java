@@ -1,17 +1,15 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DashboardPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.NewsFeedPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.*;
 
 public enum BottomMenu {
 
         DASHBOARD("Dashboard", "Dashboard", DashboardPageBase.class),
         DIARY("Diary", "Diary", DiaryPageBase.class),
         NEWSFEED("Newsfeed", "Newsfeed", NewsFeedPageBase.class),
-        PLANS("Plans", "Plans", PlansPageBase.class);
+        PLANS("Plans", "Plans", PlansPageBase.class),
+        MORE("More", "More", MoreMenuPageBase.class);
 
         private String optionAndroid;
         private String optionIos;
