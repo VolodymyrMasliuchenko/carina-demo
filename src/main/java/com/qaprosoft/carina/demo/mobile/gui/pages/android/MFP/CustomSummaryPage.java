@@ -30,18 +30,13 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
 
     @Override
     public boolean isNutrientByNameChecked(CustomSummaryPageItems customSummaryPageItems) {
-        swipe(nutrientItem.format(customSummaryPageItems.getAndroidOption()), Direction.VERTICAL, 3,1000);
-        return nutrientItem.format(customSummaryPageItems.getAndroidOption()).isChecked();
+        swipe(nutrientItem.format(customSummaryPageItems.getId()), Direction.VERTICAL, 3,1000);
+        return nutrientItem.format(customSummaryPageItems.getId()).isChecked();
     }
 
     @Override
     public void checkNutrient(CustomSummaryPageItems customSummaryPageItems) {
-        swipe(nutrientItem.format(customSummaryPageItems.getAndroidOption()), Direction.VERTICAL, 3,1000);
-        nutrientItem.format(customSummaryPageItems.getAndroidOption()).check();
-    }
-
-    @Override
-    public boolean swipe(ExtendedWebElement element,Direction direction, int count, int duration) {
-        return super.swipe(element, direction, count, duration);
+        swipe(nutrientItem.format(customSummaryPageItems.getId()), Direction.VERTICAL, 3,1000);
+        nutrientItem.format(customSummaryPageItems.getId()).check();
     }
 }

@@ -19,13 +19,13 @@ public enum CustomSummaryPageItems {
     CALCIUM("cbCalcium"),
     IRON("cbIron");
 
-    private String androidOption;
+    private String id;
 
-    CustomSummaryPageItems(String androidOption) {
-        this.androidOption = androidOption;
+    CustomSummaryPageItems(String id) {
+        this.id = id;
     }
 
-    public String getAndroidOption() {
-        return androidOption;
+    public String getId() {
+        return id;
     }
 }
