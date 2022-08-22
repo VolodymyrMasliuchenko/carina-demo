@@ -16,7 +16,7 @@ public interface IConstants {
     String FIBER = "Fiber (g)";
 
     //Custom dashboard nutrient options
-    String FIRST_OPTION = "3 of 3 nutrients selected.";
-    String SECOND_OPTION = "2 of 3 nutrients selected.";
-    String THIRD_OPTION = "4 nutrients selected. Please select only 3.";
+    String _3_OF_3_NUTRIENTS_SELECTED = "3 of 3 nutrients selected.";
+    String _2_OF_3_NUTRIENTS_SELECTED = "2 of 3 nutrients selected.";
+    String _4_OF_3_NUTRIENTS_SELECTED = "4 nutrients selected. Please select only 3.";
 }

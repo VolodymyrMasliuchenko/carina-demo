@@ -11,7 +11,6 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.CustomSummary
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Intefaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.agent.core.annotation.TestRailCaseId;
-import org.checkerframework.checker.units.qual.C;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -178,15 +177,15 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         customSummaryPage.checkNutrient(CustomSummaryPageItems.FAT);
         customSummaryPage.checkNutrient(CustomSummaryPageItems.CARBOHYDRATES);
         customSummaryPage.checkNutrient(CustomSummaryPageItems.PROTEIN);
-        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.FIRST_OPTION), IConstants.FIRST_OPTION + " text isn't present");
-        Assert.assertTrue(customSummaryPage.isDoneButtonActive(), "Done button isn't active");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants._3_OF_3_NUTRIENTS_SELECTED), IConstants._3_OF_3_NUTRIENTS_SELECTED + " text isn't present");
+        Assert.assertTrue(customSummaryPage.isDoneButtonActive(), "Done button isn't active when 3 nutrients are selected");
         customSummaryPage.uncheckNutrient(CustomSummaryPageItems.FAT);
-        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.SECOND_OPTION), IConstants.SECOND_OPTION + " text isn't present");
-        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Done button is active");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants._2_OF_3_NUTRIENTS_SELECTED), IConstants._2_OF_3_NUTRIENTS_SELECTED + " text isn't present");
+        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Done button is active when 2 of 3 nutrients are selected");
         customSummaryPage.checkNutrient(CustomSummaryPageItems.FAT);
         customSummaryPage.checkNutrient(CustomSummaryPageItems.SAT_FAT);
-        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants.THIRD_OPTION), IConstants.THIRD_OPTION + " text isn't present");
-        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Done button is active");
+        Assert.assertTrue(commonPage.isItemByTextPresent(IConstants._4_OF_3_NUTRIENTS_SELECTED), IConstants._4_OF_3_NUTRIENTS_SELECTED + " text isn't present");
+        Assert.assertFalse(customSummaryPage.isDoneButtonActive(), "Done button is active when 4 of 3 nutrients are selected");
     }
 
 }
