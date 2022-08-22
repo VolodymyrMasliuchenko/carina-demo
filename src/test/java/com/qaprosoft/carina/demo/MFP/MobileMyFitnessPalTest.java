@@ -202,23 +202,9 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.openBottomMenuItem(BottomMenu.MORE);
         Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
 
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.MY_PREMIUM_TOOLS), MoreMenuItems.MY_PREMIUM_TOOLS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.RECIPE_DISCOVERY), MoreMenuItems.RECIPE_DISCOVERY + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.PROGRESS), MoreMenuItems.PROGRESS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.WORKOUT_ROUTINE), MoreMenuItems.WORKOUT_ROUTINE + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.GOALS), MoreMenuItems.GOALS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.NUTRITION), MoreMenuItems.NUTRITION + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.RECIPES_MEALS_FOOD), MoreMenuItems.RECIPES_MEALS_FOOD + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.APPS_DEVICES), MoreMenuItems.APPS_DEVICES + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.STEPS), MoreMenuItems.STEPS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.COMMUNITY), MoreMenuItems.COMMUNITY + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.REMINDERS), MoreMenuItems.REMINDERS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.FRIENDS), MoreMenuItems.FRIENDS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.MESSAGES), MoreMenuItems.MESSAGES + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.PRIVACY_CENTER), MoreMenuItems.PRIVACY_CENTER + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.SETTINGS), MoreMenuItems.SETTINGS + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.HELP), MoreMenuItems.HELP + " item isn't present on More menu page");
-        softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.SYNC), MoreMenuItems.SYNC + " item isn't present on More menu page");
+        for (int i = 0; i < MoreMenuItems.values().length; i++) {
+            softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.values()[i]), MoreMenuItems.values()[i] + " item isn't present on More menu page");
+        }
         softAssert.assertAll();
     }
 
