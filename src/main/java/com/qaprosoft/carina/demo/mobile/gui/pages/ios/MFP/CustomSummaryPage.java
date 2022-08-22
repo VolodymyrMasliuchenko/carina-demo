@@ -28,4 +28,14 @@ public class CustomSummaryPage extends CustomSummaryPageBase {
     public void checkNutrient(CustomSummaryPageItems customSummaryPageItems) {
         throw new NotImplementedException("Not implemented");
     }
+
+    @Override
+    public void uncheckNutrient(CustomSummaryPageItems customSummaryPageItems) {
+        throw new NotImplementedException("Not implemented");
+    }
+
+    @Override
+    public boolean isDoneButtonActive() {
+        throw new NotImplementedException("Not implemented");
+    }
 }
