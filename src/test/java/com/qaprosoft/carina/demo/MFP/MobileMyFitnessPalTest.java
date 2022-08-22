@@ -202,8 +202,8 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.openBottomMenuItem(BottomMenu.MORE);
         Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
 
-        for (int i = 0; i < MoreMenuItems.values().length; i++) {
-            softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.values()[i]), MoreMenuItems.values()[i] + " item isn't present on More menu page");
+        for (MoreMenuItems item : MoreMenuItems.values()) {
+            softAssert.assertTrue(moreMenuPage.isMenuItemPresent(MoreMenuItems.values()[item.ordinal()]), MoreMenuItems.values()[item.ordinal()] + " item isn't present on More menu page");
         }
         softAssert.assertAll();
     }
