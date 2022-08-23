@@ -228,4 +228,30 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         softAssert.assertAll();
     }
 
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Plans page validation.", value = {"mobile","regression"})
+    @TestRailCaseId("9")
+    public void testPlansPageValidation() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+
+        for (PlanPageItems plan : PlanPageItems.values()) {
+            softAssert.assertTrue(plansPage.isPlanRadioButtonsPresent(plan), plan.getButtonName() + " text isn't present");
+        }
+
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FIND_A_PLAN), IConstants.FIND_A_PLAN + "text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FIND_PLAN_DESC), IConstants.FIND_PLAN_DESC + "text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FILTER_BY),IConstants.FILTER_BY + "text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS),IConstants.LOOKING_FOR_MORE_PLANS + "text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS_DESC),IConstants.LOOKING_FOR_MORE_PLANS_DESC + "text isn't present");
+
+        softAssert.assertAll();
+    }
+
 }
