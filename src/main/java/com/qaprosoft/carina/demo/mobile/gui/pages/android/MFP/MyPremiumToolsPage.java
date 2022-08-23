@@ -27,15 +27,15 @@ public class MyPremiumToolsPage extends MyPremiumToolsPageBase {
     }
 
     @Override
-    public boolean isMyPremiumPageItemNamePresent(MyPremiumToolsItems item) {
+    public boolean isMyPremiumItemNamePresent(MyPremiumToolsItems item) {
         swipe(elementWithText.format(item.getName()), IMobileUtils.Direction.VERTICAL, 3,1000);
-        return elementWithText.format(item.getName()).isElementPresent(1);
+        return elementWithText.format(item.getName()).isElementPresent(3);
     }
 
     @Override
-    public boolean isMyPremiumPageItemDescriptionPresent(MyPremiumToolsItems item) {
+    public boolean isDescriptionPresent(MyPremiumToolsItems item) {
         swipe(elementWithText.format(item.getDescription()), IMobileUtils.Direction.VERTICAL, 3,1000);
-        return elementWithText.format(item.getDescription()).isElementPresent(1);
+        return elementWithText.format(item.getDescription()).isElementPresent(3);
     }
 
 }

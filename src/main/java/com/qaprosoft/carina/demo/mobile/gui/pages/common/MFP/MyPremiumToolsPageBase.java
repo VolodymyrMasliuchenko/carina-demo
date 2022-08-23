@@ -10,7 +10,7 @@ public abstract class MyPremiumToolsPageBase extends AbstractPage implements IMo
         super(driver);
     }
 
-    public abstract boolean isMyPremiumPageItemNamePresent(MyPremiumToolsItems item);
-    public abstract boolean isMyPremiumPageItemDescriptionPresent(MyPremiumToolsItems item);
+    public abstract boolean isMyPremiumItemNamePresent(MyPremiumToolsItems item);
+    public abstract boolean isDescriptionPresent(MyPremiumToolsItems item);
 
 }

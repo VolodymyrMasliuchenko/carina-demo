@@ -221,8 +221,8 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(myPremiumToolsPage.isPageOpened(), "My premium tools page isn't opened");
 
         for (MyPremiumToolsItems item : MyPremiumToolsItems.values()) {
-            softAssert.assertTrue(myPremiumToolsPage.isMyPremiumPageItemNamePresent(item), item + " item isn't present on My premium tools page");
-            softAssert.assertTrue(myPremiumToolsPage.isMyPremiumPageItemDescriptionPresent(item), item + " item isn't present on My premium tools page");
+            softAssert.assertTrue(myPremiumToolsPage.isMyPremiumItemNamePresent(item), item.getName() + " name isn't present on My premium tools page");
+            softAssert.assertTrue(myPremiumToolsPage.isDescriptionPresent(item), item.getDescription() + " description isn't present on My premium tools page");
         }
 
         softAssert.assertAll();

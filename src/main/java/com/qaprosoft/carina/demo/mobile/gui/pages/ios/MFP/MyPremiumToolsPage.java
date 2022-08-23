@@ -14,12 +14,12 @@ public class MyPremiumToolsPage extends MyPremiumToolsPageBase {
     }
 
     @Override
-    public boolean isMyPremiumPageItemNamePresent(MyPremiumToolsItems item) {
+    public boolean isMyPremiumItemNamePresent(MyPremiumToolsItems item) {
         throw new NotImplementedException("Not implemented");
     }
 
     @Override
-    public boolean isMyPremiumPageItemDescriptionPresent(MyPremiumToolsItems item) {
+    public boolean isDescriptionPresent(MyPremiumToolsItems item) {
         throw new NotImplementedException("Not implemented");
     }
 }

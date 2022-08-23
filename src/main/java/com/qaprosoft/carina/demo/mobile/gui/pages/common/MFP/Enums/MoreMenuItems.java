@@ -21,16 +21,16 @@ public enum MoreMenuItems {
     SETTINGS("Settings", SettingsPageBase.class),
     HELP("Help", HelpPageBase.class);
 
-    private String text;
+    private String optionTitle;
     private Class<? extends AbstractPage> page;
 
-    MoreMenuItems(String text, Class<? extends AbstractPage> page) {
-        this.text = text;
+    MoreMenuItems(String optionTitle, Class<? extends AbstractPage> page) {
+        this.optionTitle = optionTitle;
         this.page = page;
     }
 
-    public String getText() {
-        return text;
+    public String getOptionTitle() {
+        return optionTitle;
     }
 
     public Class<? extends AbstractPage> getPage() {
