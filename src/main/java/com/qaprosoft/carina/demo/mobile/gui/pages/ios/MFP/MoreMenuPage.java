@@ -18,4 +18,9 @@ public class MoreMenuPage extends MoreMenuPageBase {
     public boolean isMenuItemPresent(MoreMenuItems menu) {
         throw new NotImplementedException("Not implemented");
     }
+
+    @Override
+    public AbstractPage clickMenuItem(MoreMenuItems menu) {
+        throw new NotImplementedException("Not implemented");
+    }
 }

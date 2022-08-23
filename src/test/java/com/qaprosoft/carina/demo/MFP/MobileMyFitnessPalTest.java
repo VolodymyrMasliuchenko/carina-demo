@@ -5,10 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.*;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.BottomMenu;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.CustomDashboardItems;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.CustomSummaryPageItems;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.MoreMenuItems;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.*;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Intefaces.IConstants;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import com.zebrunner.agent.core.annotation.TestRailCaseId;
@@ -205,6 +202,29 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         for (MoreMenuItems item : MoreMenuItems.values()) {
             softAssert.assertTrue(moreMenuPage.isMenuItemPresent(item), item + " item isn't present on More menu page");
         }
+        softAssert.assertAll();
+    }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "My Premium Tools page validation.", value = {"mobile","regression"})
+    @TestRailCaseId("8")
+    public void testMyPremiumToolsPageValidation() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.openBottomMenuItem(BottomMenu.MORE);
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More menu page isn't opened");
+        MyPremiumToolsPageBase myPremiumToolsPage = (MyPremiumToolsPageBase) moreMenuPage.clickMenuItem(MoreMenuItems.MY_PREMIUM_TOOLS);
+        Assert.assertTrue(myPremiumToolsPage.isPageOpened(), "My premium tools page isn't opened");
+
+        for (MyPremiumToolsItems item : MyPremiumToolsItems.values()) {
+            softAssert.assertTrue(myPremiumToolsPage.isMyPremiumPageItemNamePresent(item), item + " item isn't present on My premium tools page");
+            softAssert.assertTrue(myPremiumToolsPage.isMyPremiumPageItemDescriptionPresent(item), item + " item isn't present on My premium tools page");
+        }
+
         softAssert.assertAll();
     }
 

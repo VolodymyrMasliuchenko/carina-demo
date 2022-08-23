@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.MoreMenuItems;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.MoreMenuPageBase;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +30,13 @@ public class MoreMenuPage extends MoreMenuPageBase {
     public boolean isMenuItemPresent(MoreMenuItems menu) {
         swipe(moreMenuItem.format(menu.getText()), IMobileUtils.Direction.VERTICAL, 3,1000);
         return moreMenuItem.format(menu.getText()).isElementPresent(1);
+    }
+
+    @Override
+    public AbstractPage clickMenuItem(MoreMenuItems menu) {
+        swipe(moreMenuItem.format(menu.getText()), IMobileUtils.Direction.VERTICAL, 3,1000);
+        moreMenuItem.format(menu.getText()).click(1);
+        return initPage(getDriver(), menu.getPage());
     }
 
 }

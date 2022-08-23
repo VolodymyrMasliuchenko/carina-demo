@@ -11,5 +11,6 @@ public abstract class MoreMenuPageBase extends AbstractPage implements IMobileUt
     }
 
     public abstract boolean isMenuItemPresent(MoreMenuItems menu);
+    public abstract AbstractPage clickMenuItem(MoreMenuItems menu);
 
 }
