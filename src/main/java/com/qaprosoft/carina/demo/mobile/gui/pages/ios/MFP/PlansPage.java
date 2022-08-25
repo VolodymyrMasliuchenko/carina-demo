@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilterButton;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilteredCards;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansPageBase;
 import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,16 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public boolean isPlanRadioButtonPresent(PlanFilterButton item) {
+        throw new NotImplementedException("Not implemented");
+    }
+
+    @Override
+    public boolean isPlanFilteredCardPresent(PlanFilteredCards item) {
+        throw new NotImplementedException("Not implemented");
+    }
+
+    @Override
+    public void clickPlanRadioButton(PlanFilterButton item) {
         throw new NotImplementedException("Not implemented");
     }
 

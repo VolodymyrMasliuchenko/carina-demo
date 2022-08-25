@@ -255,4 +255,27 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         softAssert.assertAll();
     }
 
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Plans filters checking.", value = {"mobile","regression"})
+    @TestRailCaseId("10")
+    public void testPlansFilteringChecking() {
+        SoftAssert softAssert = new SoftAssert();
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+
+       for (PlanFilterButton button : PlanFilterButton.values()) {
+            plansPage.clickPlanRadioButton(button);
+            for (PlanFilteredCards card : button.getFilteredPlan()) {
+                softAssert.assertTrue(plansPage.isPlanFilteredCardPresent(card), card.getText() + " plan card isn't present");
+            }
+        }
+
+        softAssert.assertAll();
+    }
+
 }

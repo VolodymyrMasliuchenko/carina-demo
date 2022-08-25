@@ -3,6 +3,8 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilterButton;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilteredCards;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Intefaces.IConstants;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +28,17 @@ public class PlansPage extends PlansPageBase {
     @Override
     public boolean isPlanRadioButtonPresent(PlanFilterButton item) {
         return planRadioButton.format(item.getButtonName()).isElementPresent(3);
+    }
+
+    @Override
+    public boolean isPlanFilteredCardPresent(PlanFilteredCards item) {
+        swipe(elementWithText.format(item.getText()), Direction.VERTICAL, 5, 500);
+        return elementWithText.format(item.getText()).isElementPresent(3);
+    }
+
+    @Override
+    public void clickPlanRadioButton(PlanFilterButton item) {
+        planRadioButton.format(item.getButtonName()).click(3);
     }
 
     @Override
