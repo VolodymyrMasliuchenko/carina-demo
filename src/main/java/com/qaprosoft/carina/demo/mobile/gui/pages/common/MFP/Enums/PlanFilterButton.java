@@ -1,6 +1,6 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums;
 
-public enum PlanPageItems {
+public enum PlanFilterButton {
     FREE("Free"),
     MEAL_PLAN("Meal Plan"),
     NUTRITION("Nutrition"),
@@ -9,7 +9,7 @@ public enum PlanPageItems {
 
     private String buttonName;
 
-    PlanPageItems(String buttonName) {
+    PlanFilterButton(String buttonName) {
         this.buttonName = buttonName;
     }
 

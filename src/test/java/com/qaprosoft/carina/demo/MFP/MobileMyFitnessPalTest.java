@@ -241,15 +241,16 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
         Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
 
-        for (PlanPageItems plan : PlanPageItems.values()) {
-            softAssert.assertTrue(plansPage.isPlanRadioButtonsPresent(plan), plan.getButtonName() + " text isn't present");
+        for (PlanFilterButton plan : PlanFilterButton.values()) {
+            softAssert.assertTrue(plansPage.isPlanRadioButtonPresent(plan), plan.getButtonName() + " button isn't present");
         }
 
-        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FIND_A_PLAN), IConstants.FIND_A_PLAN + "text isn't present");
-        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FIND_PLAN_DESC), IConstants.FIND_PLAN_DESC + "text isn't present");
-        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FILTER_BY),IConstants.FILTER_BY + "text isn't present");
-        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS),IConstants.LOOKING_FOR_MORE_PLANS + "text isn't present");
-        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS_DESC),IConstants.LOOKING_FOR_MORE_PLANS_DESC + "text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FIND_A_PLAN), IConstants.FIND_A_PLAN + " text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FIND_PLAN_DESC), IConstants.FIND_PLAN_DESC + " text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.FILTER_BY),IConstants.FILTER_BY + " text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS),IConstants.LOOKING_FOR_MORE_PLANS + " text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.LOOKING_FOR_MORE_PLANS_DESC),IConstants.LOOKING_FOR_MORE_PLANS_DESC + " text isn't present");
+        softAssert.assertTrue(plansPage.isItemByTextPresent(IConstants.TAKE_THE_SURVEY),IConstants.TAKE_THE_SURVEY + " link isn't present");
 
         softAssert.assertAll();
     }

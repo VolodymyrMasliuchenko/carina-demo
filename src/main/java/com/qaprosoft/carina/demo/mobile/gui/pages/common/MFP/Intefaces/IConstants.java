@@ -26,4 +26,6 @@ public interface IConstants {
     String FILTER_BY = "Filter by";
     String LOOKING_FOR_MORE_PLANS = "Looking for more plans?";
     String LOOKING_FOR_MORE_PLANS_DESC = "Let us know what type of plan you’d like to see in the future.";
+    String TAKE_THE_SURVEY = "Take The Survey";
+
 }
