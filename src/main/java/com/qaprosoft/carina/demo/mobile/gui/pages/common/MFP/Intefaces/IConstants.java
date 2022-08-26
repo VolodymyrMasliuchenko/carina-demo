@@ -27,5 +27,6 @@ public interface IConstants {
     String LOOKING_FOR_MORE_PLANS = "Looking for more plans?";
     String LOOKING_FOR_MORE_PLANS_DESC = "Let us know what type of plan you’d like to see in the future.";
     String TAKE_THE_SURVEY = "Take The Survey";
+    String CANNOT_HAVE_MORE_THAN_1_PLAN_MESSAGE = "If you join this new plan, your current active plan will end. Do you want to continue?";
 
 }

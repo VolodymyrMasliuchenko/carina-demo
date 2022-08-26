@@ -278,4 +278,35 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         softAssert.assertAll();
     }
 
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "User can't add two plans.", value = {"mobile","regression"})
+    @TestRailCaseId("11")
+    public void testUserAddTwoPlans() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+
+        plansPage.cancelPlanIfPresent();
+        plansPage.clickPlanRadioButton(PlanFilterButton.MEAL_PLAN);
+        PlanDetailsPageBase planDetailsPage = plansPage.clickPlanCard(PlanFilteredCards.LOW_CARB);
+        Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
+        planDetailsPage.clickStartPlanButton();
+        plansPage.closePopUp();
+
+        plansPage.addPlan();
+        Assert.assertTrue(plansPage.isPlanFilteredCardPresent(PlanFilteredCards.LOW_CARB),PlanFilteredCards.LOW_CARB + " plan card isn't present");
+        plansPage.clickPlanRadioButton(PlanFilterButton.MEAL_PLAN);
+        plansPage.clickPlanCard(PlanFilteredCards.HIGH_PROTEIN);
+        Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
+        planDetailsPage.clickStartPlanButton();
+        plansPage.closePopUp();
+
+        plansPage.addPlan();
+        Assert.assertFalse(plansPage.isActivePlanCardPresent(PlanFilteredCards.LOW_CARB),PlanFilteredCards.LOW_CARB + " plan card is present");
+        Assert.assertTrue(plansPage.isActivePlanCardPresent(PlanFilteredCards.HIGH_PROTEIN),PlanFilteredCards.HIGH_PROTEIN + " plan card isn't present");
+    }
 }
