@@ -13,7 +13,7 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
     }
 
     @Override
-    public PlansPageBase clickStartPlanButton() {
+    public PlansPageBase startPlan() {
         throw new NotImplementedException("Not implemented");
     }
 

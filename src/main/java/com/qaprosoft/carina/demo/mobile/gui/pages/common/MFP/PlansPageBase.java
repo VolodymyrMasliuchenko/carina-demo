@@ -12,13 +12,21 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
     }
 
     public abstract boolean isPlanRadioButtonPresent(PlanFilterButton item);
+
     public abstract boolean isPlanFilteredCardPresent(PlanFilteredCards item);
+
     public abstract boolean isActivePlanCardPresent(PlanFilteredCards item);
+
     public abstract void clickPlanRadioButton(PlanFilterButton item);
-    public abstract PlanDetailsPageBase clickPlanCard(PlanFilteredCards item);
-    public abstract void addPlan();
-    public abstract void closePopUp();
-    public abstract void cancelPlanIfPresent();
+
+    public abstract PlanDetailsPageBase openPlanCard(PlanFilteredCards item);
+
+    public abstract void clickAddPlanButton();
+
+    public abstract void clickClosePopUpButton();
+
+    public abstract void endPlanIfPresent();
+
     public abstract boolean isItemByTextPresent(String text);
 
 }

@@ -27,7 +27,7 @@ public class PlansPage extends PlansPageBase {
     private ExtendedWebElement planMoreOptionButton;
 
     @FindBy(xpath = "//android.widget.TextView[@text='End Plan']")
-    private ExtendedWebElement moreOptionEndPlanButton;
+    private ExtendedWebElement endPlanOption;
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/endPlan")
     private ExtendedWebElement endPlanButton;
@@ -61,26 +61,26 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public PlanDetailsPageBase clickPlanCard(PlanFilteredCards item) {
+    public PlanDetailsPageBase openPlanCard(PlanFilteredCards item) {
         swipe(elementWithText.format(item.getText()), Direction.VERTICAL, 30, 500);
         elementWithText.format(item.getText()).click(3);
         return initPage(getDriver(), PlanDetailsPageBase.class);
     }
 
     @Override
-    public void addPlan() {
+    public void clickAddPlanButton() {
         addPlanButton.click(3);
     }
 
     @Override
-    public void closePopUp() {
+    public void clickClosePopUpButton() {
         confirmPopUpButton.click(3);
     }
 
     @Override
-    public void cancelPlanIfPresent() {
+    public void endPlanIfPresent() {
         planMoreOptionButton.clickIfPresent(3);
-        moreOptionEndPlanButton.clickIfPresent(3);
+        endPlanOption.clickIfPresent(3);
         endPlanButton.clickIfPresent(3);
     }
 

@@ -35,22 +35,22 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public PlanDetailsPageBase clickPlanCard(PlanFilteredCards item) {
+    public PlanDetailsPageBase openPlanCard(PlanFilteredCards item) {
         throw new NotImplementedException("Not implemented");
     }
 
     @Override
-    public void addPlan() {
+    public void clickAddPlanButton() {
         throw new NotImplementedException("Not implemented");
     }
 
     @Override
-    public void closePopUp() {
+    public void clickClosePopUpButton() {
         throw new NotImplementedException("Not implemented");
     }
 
     @Override
-    public void cancelPlanIfPresent() {
+    public void endPlanIfPresent() {
         throw new NotImplementedException("Not implemented");
     }
 

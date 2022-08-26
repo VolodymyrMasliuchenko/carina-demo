@@ -8,5 +8,5 @@ public abstract class PlanDetailsPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract PlansPageBase clickStartPlanButton();
+    public abstract PlansPageBase startPlan();
 }

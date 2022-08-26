@@ -32,7 +32,7 @@ public class PlanDetailsPage extends PlanDetailsPageBase {
     }
 
     @Override
-    public PlansPageBase clickStartPlanButton() {
+    public PlansPageBase startPlan() {
         startPlanButton.click(3);
         continueAddPlanButton.clickIfPresent(3);
         return initPage(getDriver(), PlansPageBase.class);
