@@ -1,11 +1,15 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
+import com.qaprosoft.carina.core.foundation.commons.SpecialKeywords;
+import com.qaprosoft.carina.core.foundation.crypto.CryptoTool;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+
+import java.util.regex.Pattern;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
@@ -75,6 +79,8 @@ public class LoginPage extends LoginPageBase {
     @Override
     public DashboardPageBase loginToAccount(String email, String password) {
         //open welcome page
+        CryptoTool cryptoTool = new CryptoTool("./.settings/mfp_crypto.key");
+        Pattern CRYPTO_PATTERN = Pattern.compile(SpecialKeywords.CRYPT);
         WelcomePageBase welcomePage = initPage(getDriver(), WelcomePageBase.class);
         Assert.assertTrue(welcomePage.isPageOpened(), "Welcome page isn't opened");
         LoginPageBase loginPage = welcomePage.clickLoginButton();
@@ -86,7 +92,8 @@ public class LoginPage extends LoginPageBase {
         //log in
         loginPage.typeEmail(email);
         loginPage.typePassword(password);
-        Assert.assertEquals(loginPage.getEmailInputFieldText(), email, "Email input field isn't typed");
+        String decryptedEmail = cryptoTool.decryptByPattern(email, CRYPTO_PATTERN);
+        Assert.assertEquals(loginPage.getEmailInputFieldText(), decryptedEmail, "Email input field isn't typed");
         loginPage.clickLoginButton();
         HomeScreenTutorialPopUpPageBase homeScreenTutorialPopUp = initPage(getDriver(), HomeScreenTutorialPopUpPageBase.class);
         homeScreenTutorialPopUp.clickClosePopUpButton();
