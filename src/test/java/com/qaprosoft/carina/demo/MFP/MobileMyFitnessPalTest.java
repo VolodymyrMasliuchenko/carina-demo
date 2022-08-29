@@ -19,7 +19,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "feature", value = {"mobile", "regression"})
     public void testLoginPageMyFitnessPal() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestRailCaseId("1")
     public void testBottomMenu() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
 
@@ -55,7 +55,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestRailCaseId("2")
     public void testGoalAndRemainingCalories() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
@@ -74,7 +74,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         int proteinCount = 1;
 
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
@@ -94,7 +94,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     public void testCustomDashboardValidation() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
@@ -163,7 +163,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestRailCaseId("6")
     public void testCustomSummaryNutrientsValidation() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         DiaryPageBase diaryPage = (DiaryPageBase) commonPage.openBottomMenuItem(BottomMenu.DIARY);
@@ -193,7 +193,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     public void testMoreMenuOptionsValidation() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.openBottomMenuItem(BottomMenu.MORE);
@@ -212,7 +212,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     public void testMyPremiumToolsPageValidation() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.openBottomMenuItem(BottomMenu.MORE);
@@ -235,7 +235,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     public void testPlansPageValidation() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
@@ -262,7 +262,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     public void testPlansFilteringChecking() {
         SoftAssert softAssert = new SoftAssert();
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
@@ -284,7 +284,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
     @TestRailCaseId("11")
     public void testUserAddTwoPlans() {
         LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
-        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        loginPage.loginToAccount(R.TESTDATA.getDecrypted("email"), R.TESTDATA.getDecrypted("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
