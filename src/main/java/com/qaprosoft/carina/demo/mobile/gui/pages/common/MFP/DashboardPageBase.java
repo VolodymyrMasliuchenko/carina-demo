@@ -10,6 +10,6 @@ public abstract class DashboardPageBase extends AbstractPage {
 
     public abstract boolean isUserAvatarPresent();
 
-    public abstract AccountInfoPageBase clickUserAvatar();
+    public abstract AccountPageBase clickUserAvatar();
 
 }

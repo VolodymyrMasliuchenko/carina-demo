@@ -309,4 +309,27 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertFalse(plansPage.isActivePlanCardPresent(PlanFilteredCards.LOW_CARB),PlanFilteredCards.LOW_CARB + " plan card is present");
         Assert.assertTrue(plansPage.isActivePlanCardPresent(PlanFilteredCards.HIGH_PROTEIN),PlanFilteredCards.HIGH_PROTEIN + " plan card isn't present");
     }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Amount of created food is changing.", value = {"mobile","regression"})
+    @TestRailCaseId("12")
+    public void testAmountOfCreatedFoodChanged() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        DashboardPageBase dashboardPage = loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        Assert.assertTrue(dashboardPage.isPageOpened(), "Dashboard page isn't opened");
+
+        Assert.assertTrue(dashboardPage.isUserAvatarPresent(), "User avatar isn't present");
+        AccountPageBase accountPage = dashboardPage.clickUserAvatar();
+        Assert.assertTrue(accountPage.isPageOpened(), "Account info page isn't opened");
+        MyItemsPageBase myItemsPage = (MyItemsPageBase) accountPage.openNavbarItem(AccountPageNavbarItems.MY_ITEMS);
+        //set old count of Food
+        int oldFoodValue = Integer.parseInt(myItemsPage.getFoodsCount());
+
+        CreateFoodsPageBase createFoodsPage = (CreateFoodsPageBase) myItemsPage.openItem(MyItems.FOODS);
+        Assert.assertTrue(createFoodsPage.isPageOpened(), "Create Food page isn't opened");
+        createFoodsPage.createFood("brand", "description", 1,"unit",1,1);
+        //check if count of Food +1
+        Assert.assertEquals(oldFoodValue + 1, Integer.parseInt(myItemsPage.getFoodsCount()), "Didn't add food");
+    }
 }
