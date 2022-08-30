@@ -322,7 +322,7 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(dashboardPage.isUserAvatarPresent(), "User avatar isn't present");
         AccountPageBase accountPage = dashboardPage.clickUserAvatar();
         Assert.assertTrue(accountPage.isPageOpened(), "Account info page isn't opened");
-        MyItemsPageBase myItemsPage = (MyItemsPageBase) accountPage.openNavbarItem(AccountPageNavbarItems.MY_ITEMS);
+        MyItemsPageBase myItemsPage = (MyItemsPageBase) accountPage.openNavbarItem(AccountPageTabs.MY_ITEMS);
         //set old count of Food
         int oldFoodValue = Integer.parseInt(myItemsPage.getFoodsCount());
 
@@ -330,6 +330,6 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(createFoodsPage.isPageOpened(), "Create Food page isn't opened");
         createFoodsPage.createFood("brand", "description", 1,"unit",1,1);
         //check if count of Food +1
-        Assert.assertEquals(oldFoodValue + 1, Integer.parseInt(myItemsPage.getFoodsCount()), "Didn't add food");
+        Assert.assertEquals(oldFoodValue + 1, Integer.parseInt(myItemsPage.getFoodsCount()), "Amount of food isn't changed after creating new food");
     }
 }

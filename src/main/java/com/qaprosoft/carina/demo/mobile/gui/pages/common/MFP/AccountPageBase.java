@@ -1,7 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP;
 
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.AccountPageNavbarItems;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.AccountPageTabs;
 import org.openqa.selenium.WebDriver;
 
 public abstract class AccountPageBase extends AbstractPage {
@@ -11,6 +11,6 @@ public abstract class AccountPageBase extends AbstractPage {
 
     public abstract String getAccountUsername();
 
-    public abstract AbstractPage openNavbarItem(AccountPageNavbarItems item);
+    public abstract AbstractPage openNavbarItem(AccountPageTabs item);
 
 }

@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 public class MyItemsPage extends MyItemsPageBase {
 
     @FindBy(xpath = "//android.widget.LinearLayout[@resource-id='com.myfitnesspal.android:id/" + "%s']" + "//android.widget.Button[@text='CREATE']")
-    private ExtendedWebElement items;
+    private ExtendedWebElement itemIcon;
 
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Foods')]")
     private ExtendedWebElement foodsCount;
@@ -23,7 +23,7 @@ public class MyItemsPage extends MyItemsPageBase {
 
     @Override
     public AbstractPage openItem(MyItems item) {
-        items.format(item.getId()).click(3);
+        itemIcon.format(item.getId()).click(3);
         return initPage(getDriver(), item.getPage());
     }
 

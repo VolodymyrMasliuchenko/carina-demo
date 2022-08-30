@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.AccountPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.AccountPageNavbarItems;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.AccountPageTabs;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,7 +16,7 @@ public class AccountPage extends AccountPageBase {
     private ExtendedWebElement accountUsername;
 
     @ExtendedFindBy(accessibilityId = "%s")
-    private ExtendedWebElement navbarItem;
+    private ExtendedWebElement tabName;
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -31,8 +31,8 @@ public class AccountPage extends AccountPageBase {
     }
 
     @Override
-    public AbstractPage openNavbarItem(AccountPageNavbarItems item) {
-        navbarItem.format(item.getId()).click(3);
+    public AbstractPage openNavbarItem(AccountPageTabs item) {
+        tabName.format(item.getId()).click(3);
         return initPage(getDriver(), item.getPage());
     }
 

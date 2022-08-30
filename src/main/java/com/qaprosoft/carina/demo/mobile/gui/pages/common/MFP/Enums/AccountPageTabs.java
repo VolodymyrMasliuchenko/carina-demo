@@ -5,7 +5,7 @@ import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.MyInfoPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.MyItemsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.MyPostsPageBase;
 
-public enum AccountPageNavbarItems {
+public enum AccountPageTabs {
     MY_INFO("My Info", MyInfoPageBase.class),
     MY_ITEMS("My Items", MyItemsPageBase.class),
     MY_POSTS("My Posts", MyPostsPageBase.class);
@@ -13,7 +13,7 @@ public enum AccountPageNavbarItems {
     private String id;
     private Class<? extends AbstractPage> page;
 
-    AccountPageNavbarItems(String id, Class<? extends AbstractPage> page) {
+    AccountPageTabs(String id, Class<? extends AbstractPage> page) {
         this.id = id;
         this.page = page;
     }
