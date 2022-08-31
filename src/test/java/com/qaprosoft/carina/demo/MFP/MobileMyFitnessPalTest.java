@@ -332,4 +332,45 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         //check if count of Food +1
         Assert.assertEquals(oldFoodValue + 1, Integer.parseInt(myItemsPage.getFoodsCount()), "Amount of food isn't changed after creating new food");
     }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "End Plan sheet validation.", value = {"mobile","regression"})
+    @TestRailCaseId("13")
+    public void testEndPlanSheetValidation() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+
+        plansPage.endPlanIfPresent();
+        plansPage.clickPlanRadioButton(PlanFilterButton.MEAL_PLAN);
+        PlanDetailsPageBase planDetailsPage = plansPage.openPlanCard(PlanFilteredCards.LOW_CARB);
+        Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
+        planDetailsPage.startPlan();
+        plansPage.clickClosePopUpButton();
+        EndPlanPageBase endPlanPage = plansPage.openEndPlanPage();
+        Assert.assertTrue(endPlanPage.isPageOpened(), "End plan page isn't opened");
+        //select and check three checkboxes
+        endPlanPage.checkOption(EndPlanCheckBoxItems.I_LOST_INTEREST);
+        Assert.assertTrue(endPlanPage.isOptionChecked(EndPlanCheckBoxItems.I_LOST_INTEREST), "Checkbox 1 isn't checked");
+        endPlanPage.checkOption(EndPlanCheckBoxItems.THE_PLAN_WASNT_HELPFUL);
+        Assert.assertTrue(endPlanPage.isOptionChecked(EndPlanCheckBoxItems.THE_PLAN_WASNT_HELPFUL), "Checkbox 2 isn't checked");
+        endPlanPage.checkOption(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT);
+        Assert.assertTrue(endPlanPage.isOptionChecked(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT), "Checkbox 3 isn't checked");
+        //deselect one checkbox
+        endPlanPage.uncheckOption(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT);
+        Assert.assertFalse(endPlanPage.isOptionUnchecked(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT), "The user can't deselect an option");
+        //deselect all
+        for (EndPlanCheckBoxItems checkbox : EndPlanCheckBoxItems.values()) {
+            endPlanPage.uncheckOption(checkbox);
+            Assert.assertFalse(endPlanPage.isOptionUnchecked(checkbox), checkbox.getText() + " checkbox is checked");
+        }
+        //end plan and check if user is unable to end this with no options selected.
+        endPlanPage.endPlanAndReturnPlansPage();
+        Assert.assertTrue(plansPage.isPageOpened(), "User is unable to end plan with no options selected.");
+
+    }
 }

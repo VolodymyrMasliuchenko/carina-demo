@@ -2,6 +2,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilterButton;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilteredCards;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlanDetailsPageBase;
@@ -82,6 +83,13 @@ public class PlansPage extends PlansPageBase {
         planMoreOptionButton.clickIfPresent(3);
         endPlanOption.clickIfPresent(3);
         endPlanButton.clickIfPresent(3);
+    }
+
+    @Override
+    public EndPlanPageBase openEndPlanPage() {
+        planMoreOptionButton.click(3);
+        endPlanOption.click(3);
+        return initPage(getDriver(), EndPlanPageBase.class);
     }
 
     @Override

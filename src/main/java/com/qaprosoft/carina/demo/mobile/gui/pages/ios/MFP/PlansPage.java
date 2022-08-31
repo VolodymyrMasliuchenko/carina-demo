@@ -1,6 +1,7 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.ios.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilterButton;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilteredCards;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlanDetailsPageBase;
@@ -51,6 +52,11 @@ public class PlansPage extends PlansPageBase {
 
     @Override
     public void endPlanIfPresent() {
+        throw new NotImplementedException("Not implemented");
+    }
+
+    @Override
+    public EndPlanPageBase openEndPlanPage() {
         throw new NotImplementedException("Not implemented");
     }
 

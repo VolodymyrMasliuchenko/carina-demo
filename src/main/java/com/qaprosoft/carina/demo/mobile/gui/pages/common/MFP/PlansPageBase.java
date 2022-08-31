@@ -27,6 +27,8 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
 
     public abstract void endPlanIfPresent();
 
+    public abstract EndPlanPageBase openEndPlanPage();
+
     public abstract boolean isItemByTextPresent(String text);
 
 }
