@@ -376,5 +376,22 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
 
     }
 
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "User is able to like posts.", value = {"mobile","regression"})
+    @TestRailCaseId("14")
+    public void testUserAbleAndUnlikeLikePosts() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        NewsFeedPageBase newsFeedPage = (NewsFeedPageBase) commonPage.openBottomMenuItem(BottomMenu.NEWSFEED);
+        Assert.assertTrue(newsFeedPage.isPageOpened(), "Newsfeed page isn't opened");
+
+        newsFeedPage.likePostIfPresent();
+        Assert.assertTrue(newsFeedPage.isLikeCountPresent(), "User isn't able to add like to the post");
+
+        newsFeedPage.unlikePostIfPresent();
+        Assert.assertFalse(newsFeedPage.isLikeCountPresent(), "User isn't able to unlike the post");
+    }
 }

@@ -12,6 +12,12 @@ public class NewsFeedPage extends NewsFeedPageBase {
     @FindBy(xpath = "(//android.widget.TextView[@text='Newsfeed'])[1]")
     private ExtendedWebElement newsFeedPageTitle;
 
+    @FindBy(id = "com.myfitnesspal.android:id/buttonLike")
+    private ExtendedWebElement likePostButton;
+
+    @FindBy(id = "com.myfitnesspal.android:id/textNumberOfLikes")
+    private ExtendedWebElement countOfLikes;
+
     public NewsFeedPage(WebDriver driver) {
         super(driver);
     }
@@ -19,5 +25,23 @@ public class NewsFeedPage extends NewsFeedPageBase {
     public boolean isPageOpened() {
         return newsFeedPageTitle.isElementPresent();
     }
+
+    @Override
+    public void likePostIfPresent() {
+        swipe(likePostButton, Direction.VERTICAL, 20,500);
+        likePostButton.clickIfPresent(3);
+    }
+
+    @Override
+    public void unlikePostIfPresent() {
+        swipe(likePostButton, Direction.VERTICAL, 20,500);
+        likePostButton.clickIfPresent(3);
+    }
+
+    @Override
+    public boolean isLikeCountPresent() {
+        return countOfLikes.isElementPresent(3);
+    }
+
 
 }
