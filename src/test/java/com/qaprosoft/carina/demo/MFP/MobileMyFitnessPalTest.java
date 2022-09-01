@@ -287,25 +287,26 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansTaskPageBase plansTaskPage = initPage(getDriver(), PlansTaskPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
         Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
 
-        plansPage.endPlanIfPresent();
+        plansTaskPage.endPlanIfPresent();
         plansPage.clickPlanRadioButton(PlanFilterButton.MEAL_PLAN);
         PlanDetailsPageBase planDetailsPage = plansPage.openPlanCard(PlanFilteredCards.LOW_CARB);
         Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
         planDetailsPage.startPlan();
-        plansPage.clickClosePopUpButton();
+        plansTaskPage.clickClosePopUpButton();
 
-        plansPage.clickAddPlanButton();
+        plansTaskPage.clickAddPlanButton();
         Assert.assertTrue(plansPage.isPlanFilteredCardPresent(PlanFilteredCards.LOW_CARB),PlanFilteredCards.LOW_CARB + " plan card isn't present");
         plansPage.clickPlanRadioButton(PlanFilterButton.MEAL_PLAN);
         plansPage.openPlanCard(PlanFilteredCards.HIGH_PROTEIN);
         Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
         planDetailsPage.startPlan();
-        plansPage.clickClosePopUpButton();
+        plansTaskPage.clickClosePopUpButton();
 
-        plansPage.clickAddPlanButton();
+        plansTaskPage.clickAddPlanButton();
         Assert.assertFalse(plansPage.isActivePlanCardPresent(PlanFilteredCards.LOW_CARB),PlanFilteredCards.LOW_CARB + " plan card is present");
         Assert.assertTrue(plansPage.isActivePlanCardPresent(PlanFilteredCards.HIGH_PROTEIN),PlanFilteredCards.HIGH_PROTEIN + " plan card isn't present");
     }
@@ -342,25 +343,26 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
 
         CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansTaskPageBase plansTaskPage = initPage(getDriver(), PlansTaskPageBase.class);
         PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
         Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
 
-        plansPage.endPlanIfPresent();
+
+        plansTaskPage.endPlanIfPresent();
         plansPage.clickPlanRadioButton(PlanFilterButton.MEAL_PLAN);
         PlanDetailsPageBase planDetailsPage = plansPage.openPlanCard(PlanFilteredCards.LOW_CARB);
         Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
         planDetailsPage.startPlan();
-        plansPage.clickClosePopUpButton();
-        EndPlanPageBase endPlanPage = plansPage.openEndPlanPage();
+        EndPlanPageBase endPlanPage = plansTaskPage.openEndPlanPage();
         Assert.assertTrue(endPlanPage.isPageOpened(), "End plan page isn't opened");
-        //select and check three checkboxes
+        // select and check three checkboxes
         endPlanPage.checkOption(EndPlanCheckBoxItems.I_LOST_INTEREST);
         Assert.assertTrue(endPlanPage.isOptionChecked(EndPlanCheckBoxItems.I_LOST_INTEREST), "Checkbox 1 isn't checked");
         endPlanPage.checkOption(EndPlanCheckBoxItems.THE_PLAN_WASNT_HELPFUL);
         Assert.assertTrue(endPlanPage.isOptionChecked(EndPlanCheckBoxItems.THE_PLAN_WASNT_HELPFUL), "Checkbox 2 isn't checked");
         endPlanPage.checkOption(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT);
         Assert.assertTrue(endPlanPage.isOptionChecked(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT), "Checkbox 3 isn't checked");
-        //deselect one checkbox
+        // deselect one checkbox
         endPlanPage.uncheckOption(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT);
         Assert.assertFalse(endPlanPage.isOptionUnchecked(EndPlanCheckBoxItems.JUST_WANTED_TO_WHAT_THIS_PLAN_ABOUT), "The user can't deselect an option");
         //deselect all
@@ -368,9 +370,11 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
             endPlanPage.uncheckOption(checkbox);
             Assert.assertFalse(endPlanPage.isOptionUnchecked(checkbox), checkbox.getText() + " checkbox is checked");
         }
-        //end plan and check if user is unable to end this with no options selected.
-        endPlanPage.endPlanAndReturnPlansPage();
+        // end plan and check if user is unable to end this with no options selected.
+        endPlanPage.clickEndPlanButton();
         Assert.assertTrue(plansPage.isPageOpened(), "User is unable to end plan with no options selected.");
 
     }
+
+
 }

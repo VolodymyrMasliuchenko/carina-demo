@@ -21,14 +21,6 @@ public abstract class PlansPageBase extends AbstractPage implements IMobileUtils
 
     public abstract PlanDetailsPageBase openPlanCard(PlanFilteredCards item);
 
-    public abstract void clickAddPlanButton();
-
-    public abstract void clickClosePopUpButton();
-
-    public abstract void endPlanIfPresent();
-
-    public abstract EndPlanPageBase openEndPlanPage();
-
     public abstract boolean isItemByTextPresent(String text);
 
 }

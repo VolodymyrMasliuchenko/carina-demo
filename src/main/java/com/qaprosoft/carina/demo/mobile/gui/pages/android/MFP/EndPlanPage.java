@@ -25,6 +25,11 @@ public class EndPlanPage extends EndPlanPageBase {
     }
 
     @Override
+    public boolean isPageOpened() {
+        return endPlanPageTitle.isElementPresent(3);
+    }
+
+    @Override
     public void checkOption(EndPlanCheckBoxItems item) {
         checkboxItem.format(item.getText()).check();
     }
@@ -45,13 +50,8 @@ public class EndPlanPage extends EndPlanPageBase {
     }
 
     @Override
-    public PlansPageBase endPlanAndReturnPlansPage() {
+    public PlansPageBase clickEndPlanButton() {
         endPlanButton.click(3);
         return initPage(getDriver(), PlansPageBase.class);
-    }
-
-    @Override
-    public boolean isPageOpened() {
-        return endPlanPageTitle.isElementPresent();
     }
 }

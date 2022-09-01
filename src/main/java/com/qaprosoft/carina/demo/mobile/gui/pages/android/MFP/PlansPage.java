@@ -2,7 +2,6 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EndPlanPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilterButton;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Enums.PlanFilteredCards;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlanDetailsPageBase;
@@ -11,12 +10,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = PlansPageBase.class)
-public class PlansPage extends PlansPageBase {
+public class PlansPage extends PlansPageBase { //PlansTaskPage - add page
     @FindBy(xpath = "(//android.widget.TextView[@text='Plans'])[1]")
     private ExtendedWebElement plansPageTitle;
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/welcomeActionBtn")
-    private ExtendedWebElement confirmPopUpButton;
+    private ExtendedWebElement letsDoThisPopUpButton;
 
     @FindBy(id = "com.myfitnesspal.android.plans:id/action_show_plans_hub")
     private ExtendedWebElement addPlanButton;
@@ -38,6 +37,10 @@ public class PlansPage extends PlansPageBase {
 
     public PlansPage(WebDriver driver) {
         super(driver);
+    }
+
+    public boolean isPageOpened() {
+        return plansPageTitle.isElementPresent(3);
     }
 
     @Override
@@ -69,37 +72,9 @@ public class PlansPage extends PlansPageBase {
     }
 
     @Override
-    public void clickAddPlanButton() {
-        addPlanButton.click(3);
-    }
-
-    @Override
-    public void clickClosePopUpButton() {
-        confirmPopUpButton.click(3);
-    }
-
-    @Override
-    public void endPlanIfPresent() {
-        planMoreOptionButton.clickIfPresent(3);
-        endPlanOption.clickIfPresent(3);
-        endPlanButton.clickIfPresent(3);
-    }
-
-    @Override
-    public EndPlanPageBase openEndPlanPage() {
-        planMoreOptionButton.click(3);
-        endPlanOption.click(3);
-        return initPage(getDriver(), EndPlanPageBase.class);
-    }
-
-    @Override
     public boolean isItemByTextPresent(String text) {
         swipe(elementWithText.format(text), Direction.VERTICAL, 22,500);
         return  elementWithText.format(text).isElementPresent(3);
-    }
-
-    public boolean isPageOpened() {
-        return plansPageTitle.isElementPresent(3);
     }
 
 }

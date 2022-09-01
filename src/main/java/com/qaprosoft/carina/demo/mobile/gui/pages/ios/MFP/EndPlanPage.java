@@ -34,7 +34,7 @@ public class EndPlanPage extends EndPlanPageBase {
     }
 
     @Override
-    public PlansPageBase endPlanAndReturnPlansPage() {
+    public PlansPageBase clickEndPlanButton() {
         throw new NotImplementedException("Not implemented");
     }
 }

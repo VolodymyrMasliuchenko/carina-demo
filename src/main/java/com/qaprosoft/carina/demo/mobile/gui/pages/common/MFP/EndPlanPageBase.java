@@ -17,6 +17,6 @@ public abstract class EndPlanPageBase extends AbstractPage {
 
     public abstract boolean isOptionUnchecked(EndPlanCheckBoxItems item);
 
-    public abstract PlansPageBase endPlanAndReturnPlansPage();
+    public abstract PlansPageBase clickEndPlanButton();
 
 }
