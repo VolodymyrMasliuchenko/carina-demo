@@ -2,6 +2,8 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.CommentsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.NewsFeedPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +19,9 @@ public class NewsFeedPage extends NewsFeedPageBase {
 
     @FindBy(id = "com.myfitnesspal.android:id/textNumberOfLikes")
     private ExtendedWebElement countOfLikes;
+
+    @FindBy(id = "com.myfitnesspal.android:id/layoutCommentButton")
+    private ExtendedWebElement leaveCommentButton;
 
     public NewsFeedPage(WebDriver driver) {
         super(driver);
@@ -43,5 +48,11 @@ public class NewsFeedPage extends NewsFeedPageBase {
         return countOfLikes.isElementPresent(3);
     }
 
+    @Override
+    public CommentsPageBase openPostCommentsPage() {
+        swipe(leaveCommentButton, Direction.VERTICAL, 20,500);
+        leaveCommentButton.click(3);
+        return initPage(getDriver(), CommentsPageBase.class);
+    }
 
 }

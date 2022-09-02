@@ -394,4 +394,23 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         newsFeedPage.unlikePostIfPresent();
         Assert.assertFalse(newsFeedPage.isLikeCountPresent(), "User isn't able to unlike the post");
     }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "User is able to comment posts.", value = {"mobile","regression"})
+    @TestRailCaseId("15")
+    public void testUserAbleCommentPosts() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        NewsFeedPageBase newsFeedPage = (NewsFeedPageBase) commonPage.openBottomMenuItem(BottomMenu.NEWSFEED);
+        Assert.assertTrue(newsFeedPage.isPageOpened(), "Newsfeed page isn't opened");
+        CommentsPageBase commentsPage = newsFeedPage.openPostCommentsPage();
+        Assert.assertTrue(commentsPage.isPageOpened(), "Comments page isn't opened");
+
+        commentsPage.addCommentPost(IConstants.COMMENT_POST);
+        Assert.assertEquals(commentsPage.getCommentText(), IConstants.COMMENT_POST, IConstants.COMMENT_POST + " comment isn't added");
+        commentsPage.deleteCommentPost();
+    }
 }
