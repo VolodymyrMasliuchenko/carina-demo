@@ -23,6 +23,9 @@ public class NewsFeedPage extends NewsFeedPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/layoutCommentButton")
     private ExtendedWebElement leaveCommentButton;
 
+    @FindBy(xpath = "//android.widget.LinearLayout[.//*[contains(@text,'MyFitnessPal Blog')] and .//*[contains(@resource-id, 'imageBlog')]]")
+    private ExtendedWebElement cardFromMFPBlog;
+
     public NewsFeedPage(WebDriver driver) {
         super(driver);
     }
@@ -53,6 +56,11 @@ public class NewsFeedPage extends NewsFeedPageBase {
         swipe(leaveCommentButton, Direction.VERTICAL, 20,500);
         leaveCommentButton.click(3);
         return initPage(getDriver(), CommentsPageBase.class);
+    }
+
+    @Override
+    public boolean isCardFromMFPBlogPresent() {
+        return cardFromMFPBlog.isElementPresent(3);
     }
 
 }

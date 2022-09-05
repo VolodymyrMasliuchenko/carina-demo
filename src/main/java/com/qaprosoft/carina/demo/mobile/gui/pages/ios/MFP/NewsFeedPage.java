@@ -32,4 +32,9 @@ public class NewsFeedPage extends NewsFeedPageBase {
         throw new NotImplementedException("Not implemented");
     }
 
+    @Override
+    public boolean isCardFromMFPBlogPresent() {
+        throw new NotImplementedException("Not implemented for IOS");
+    }
+
 }

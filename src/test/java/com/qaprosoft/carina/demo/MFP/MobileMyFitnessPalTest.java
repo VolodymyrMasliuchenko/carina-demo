@@ -413,4 +413,65 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertEquals(commentsPage.getCommentText(), IConstants.COMMENT_POST, IConstants.COMMENT_POST + " comment isn't added");
         commentsPage.deleteCommentPost();
     }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "User is able to turn off MyFitnessPal articles in his Newsfeed.", value = {"mobile","regression"})
+    @TestRailCaseId("16")
+    public void testUserIsAbleToTurnOffMFPArticlesInNewsfeed() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+        //go into setting and select checkbox
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        MoreMenuPageBase moreMenuPage = (MoreMenuPageBase) commonPage.openBottomMenuItem(BottomMenu.MORE);
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More page isn't opened");
+        SettingsPageBase settingsPage = (SettingsPageBase) moreMenuPage.clickMenuItem(MoreMenuItems.SETTINGS);
+        Assert.assertTrue(settingsPage.isPageOpened(), "Settings page isn't opened");
+        PrivacyCenterPageBase privacyCenterPage = (PrivacyCenterPageBase) settingsPage.clickSettingsOption(SettingOptions.PRIVACY_CENTER);
+        Assert.assertTrue(privacyCenterPage.isPageOpened(), "Privacy center page isn't opened");
+        SharingAndPrivacyPageBase sharingAndPrivacyPage = (SharingAndPrivacyPageBase) privacyCenterPage.clickPrivacyCenterOption(PrivacyCenterOptions.SHARING_AND_PRIVACY);
+        Assert.assertTrue(sharingAndPrivacyPage.isPageOpened(), "Sharing and privacy page isn't opened");
+        NewsFeedSharingPageBase newsFeedSharingPage = (NewsFeedSharingPageBase) sharingAndPrivacyPage.clickSharingAndPrivacyOption(SharingAndPrivacyOptions.NEWS_FEED_SHARING);
+        Assert.assertTrue(newsFeedSharingPage.isPageOpened(), "News feed sharing page isn't opened");
+        newsFeedSharingPage.selectCheckboxItem(NewsFeedSharingCheckboxItems.NEW_ARTICLES_FROM_THE_BLOG);
+        Assert.assertTrue(newsFeedSharingPage.isCheckboxItemSelected(NewsFeedSharingCheckboxItems.NEW_ARTICLES_FROM_THE_BLOG), NewsFeedSharingCheckboxItems.NEW_ARTICLES_FROM_THE_BLOG.getText() + " checkbox isn't selected");
+        //going back using back arrow
+        newsFeedSharingPage.clickBackButton();
+        Assert.assertTrue(sharingAndPrivacyPage.isPageOpened(), "Sharing and privacy page isn't opened");
+        sharingAndPrivacyPage.clickBackButton();
+        Assert.assertTrue(privacyCenterPage.isPageOpened(), "Privacy center page isn't opened");
+        privacyCenterPage.clickBackButton();
+        Assert.assertTrue(settingsPage.isPageOpened(), "Settings page isn't opened");
+        settingsPage.clickBackButton();
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More page isn't opened");
+        //check if card from MFP is present
+        NewsFeedPageBase newsFeedPage = (NewsFeedPageBase) commonPage.openBottomMenuItem(BottomMenu.NEWSFEED);
+        Assert.assertTrue(newsFeedPage.isPageOpened(), "News feed page isn't opened");
+        Assert.assertTrue(newsFeedPage.isCardFromMFPBlogPresent(),"Card from MFP isn't present");
+        //go into setting and deselect checkbox
+        commonPage.openBottomMenuItem(BottomMenu.MORE);
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More page isn't opened");
+        moreMenuPage.clickMenuItem(MoreMenuItems.SETTINGS);
+        Assert.assertTrue(settingsPage.isPageOpened(), "Settings page isn't opened");
+        settingsPage.clickSettingsOption(SettingOptions.PRIVACY_CENTER);
+        Assert.assertTrue(privacyCenterPage.isPageOpened(), "Privacy center page isn't opened");
+        privacyCenterPage.clickPrivacyCenterOption(PrivacyCenterOptions.SHARING_AND_PRIVACY);
+        Assert.assertTrue(sharingAndPrivacyPage.isPageOpened(), "Sharing and privacy page isn't opened");
+        sharingAndPrivacyPage.clickSharingAndPrivacyOption(SharingAndPrivacyOptions.NEWS_FEED_SHARING);
+        Assert.assertTrue(newsFeedSharingPage.isPageOpened(), "News feed sharing page isn't opened");
+        newsFeedSharingPage.deselectCheckboxItem(NewsFeedSharingCheckboxItems.NEW_ARTICLES_FROM_THE_BLOG);
+        //going back using back arrow
+        newsFeedSharingPage.clickBackButton();
+        Assert.assertTrue(sharingAndPrivacyPage.isPageOpened(), "Sharing and privacy page isn't opened");
+        sharingAndPrivacyPage.clickBackButton();
+        Assert.assertTrue(privacyCenterPage.isPageOpened(), "Privacy center page isn't opened");
+        privacyCenterPage.clickBackButton();
+        Assert.assertTrue(settingsPage.isPageOpened(), "Settings page isn't opened");
+        settingsPage.clickBackButton();
+        Assert.assertTrue(moreMenuPage.isPageOpened(), "More page isn't opened");
+        //check if card from MFP isn't present
+        commonPage.openBottomMenuItem(BottomMenu.NEWSFEED);
+        Assert.assertTrue(newsFeedPage.isPageOpened(), "News feed page isn't opened");
+        Assert.assertFalse(newsFeedPage.isCardFromMFPBlogPresent(),"Card from MFP is present");
+    }
 }

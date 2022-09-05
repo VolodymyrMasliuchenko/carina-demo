@@ -22,6 +22,7 @@ public class MoreMenuPage extends MoreMenuPageBase {
     }
 
     public boolean isPageOpened() {
+        swipe(userLogo, Direction.DOWN, 5, 500);
         return userLogo.isElementPresent();
     }
 
