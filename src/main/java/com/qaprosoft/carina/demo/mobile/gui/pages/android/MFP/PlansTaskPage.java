@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.EndPlanPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.LogWorkoutPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansTaskPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,9 @@ public class PlansTaskPage extends PlansTaskPageBase {
 
     @FindBy(xpath = "//*[contains(@text, '%s')]")
     private ExtendedWebElement elementWithText;
+
+    @FindBy(id = "com.myfitnesspal.android.plans:id/logWorkout")
+    private ExtendedWebElement logWorkoutButton;
 
 
     public PlansTaskPage(WebDriver driver) {
@@ -60,6 +64,12 @@ public class PlansTaskPage extends PlansTaskPageBase {
         planMoreOptionButton.click(3);
         endPlanOption.click(3);
         return initPage(getDriver(), EndPlanPageBase.class);
+    }
+
+    @Override
+    public LogWorkoutPageBase clickLogWorkoutButton() {
+        logWorkoutButton.click(3);
+        return initPage(getDriver(), LogWorkoutPageBase.class);
     }
 
 }

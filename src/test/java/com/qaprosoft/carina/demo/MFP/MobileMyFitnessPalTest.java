@@ -474,4 +474,29 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(newsFeedPage.isPageOpened(), "News feed page isn't opened");
         Assert.assertFalse(newsFeedPage.isCardFromMFPBlogPresent(),"Card from MFP is present");
     }
+
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Verify tapping on a workout task card will lead user to the Workout Routine overview screen.", value = {"mobile","regression"})
+    @TestRailCaseId("17")
+    public void testVerifyTappingOnTaskCardLeadToWorkoutRoutineScreen() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansTaskPageBase plansTaskPage = initPage(getDriver(), PlansTaskPageBase.class);
+        //find workout plan and start this
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+        plansTaskPage.endPlanIfPresent();
+        plansPage.clickPlanRadioButton(PlanFilterButton.WORKOUT);
+        PlanDetailsPageBase planDetailsPage = plansPage.openPlanCard(PlanFilteredCards.LOW_IMPACT_STRENGTH);
+        Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
+        planDetailsPage.startPlan();
+        plansTaskPage.clickClosePopUpButton();
+        //check if log workout page is present
+        LogWorkoutPageBase logWorkoutPage = plansTaskPage.clickLogWorkoutButton();
+        Assert.assertTrue(logWorkoutPage.isPageOpened(), "Log workout page isn't opened, user can't see workout routine overview screen.");
+    }
+
 }

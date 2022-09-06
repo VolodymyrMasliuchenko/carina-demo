@@ -16,4 +16,6 @@ public abstract class PlansTaskPageBase extends AbstractPage {
 
     public abstract EndPlanPageBase openEndPlanPage();
 
+    public abstract LogWorkoutPageBase clickLogWorkoutButton();
+
 }

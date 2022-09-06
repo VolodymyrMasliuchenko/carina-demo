@@ -2,7 +2,6 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.Intefaces.IConstants;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlanDetailsPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansPageBase;
 import org.openqa.selenium.WebDriver;
