@@ -499,4 +499,31 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
         Assert.assertTrue(logWorkoutPage.isPageOpened(), "Log workout page isn't opened, user can't see workout routine overview screen.");
     }
 
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "After a workout is logged, User sees 'Workout logged' confirmation message.", value = {"mobile","regression"})
+    @TestRailCaseId("18")
+    public void testConfirmationMesssageAfterTappingCheckmarkOnLogWorkout() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansTaskPageBase plansTaskPage = initPage(getDriver(), PlansTaskPageBase.class);
+
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+        plansTaskPage.endPlanIfPresent();
+        plansPage.clickPlanRadioButton(PlanFilterButton.WORKOUT);
+        PlanDetailsPageBase planDetailsPage = plansPage.openPlanCard(PlanFilteredCards.LOW_IMPACT_STRENGTH);
+        Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
+        planDetailsPage.startPlan();
+        plansTaskPage.clickClosePopUpButton();
+
+        LogWorkoutPageBase logWorkoutPage = plansTaskPage.clickLogWorkoutButton();
+        Assert.assertTrue(logWorkoutPage.isPageOpened(), "Log workout page isn't opened");
+        logWorkoutPage.clickCheckmarkIcon();
+        Assert.assertTrue(logWorkoutPage.isWorkoutLoggedMessagePresent(), "Workout logged message isn't present");
+
+    }
+
 }
