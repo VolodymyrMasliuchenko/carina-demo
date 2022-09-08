@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.android.MFP;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.DiaryPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.LogWorkoutPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.MFP.PlansTaskPageBase;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,8 @@ public class LogWorkoutPage extends LogWorkoutPageBase {
     @FindBy(id = "com.myfitnesspal.android:id/snackbar_text")
     private ExtendedWebElement workoutLoggedMessage;
 
+    @FindBy(id = "com.myfitnesspal.android:id/snackbar_action")
+    private ExtendedWebElement viewLinkOnMessage;
     public LogWorkoutPage(WebDriver driver) {
         super(driver);
     }
@@ -33,6 +36,12 @@ public class LogWorkoutPage extends LogWorkoutPageBase {
     @Override
     public boolean isWorkoutLoggedMessagePresent() {
         return workoutLoggedMessage.isElementPresent(1);
+    }
+
+    @Override
+    public DiaryPageBase clickViewLinkOnPopUpMessage() {
+        viewLinkOnMessage.click(3);
+        return initPage(getDriver(), DiaryPageBase.class);
     }
 
     @Override

@@ -526,4 +526,31 @@ public class MobileMyFitnessPalTest implements IAbstractTest, IMobileUtils {
 
     }
 
+    @Test
+    @MethodOwner(owner = "vmasliuchenko")
+    @TestLabel(name = "Verify tapping on VIEW takes user to diary screen.", value = {"mobile","regression"})
+    @TestRailCaseId("19")
+    public void testVerifyTappingOnViewTakesUserToDiaryScreen() {
+        LoginPageBase loginPage = initPage(getDriver(), LoginPageBase.class);
+        loginPage.loginToAccount(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        CommonPageBase commonPage = initPage(getDriver(), CommonPageBase.class);
+        PlansTaskPageBase plansTaskPage = initPage(getDriver(), PlansTaskPageBase.class);
+
+        PlansPageBase plansPage = (PlansPageBase) commonPage.openBottomMenuItem(BottomMenu.PLANS);
+        Assert.assertTrue(plansPage.isPageOpened(), "Plans page isn't opened");
+        plansTaskPage.endPlanIfPresent();
+        plansPage.clickPlanRadioButton(PlanFilterButton.WORKOUT);
+        PlanDetailsPageBase planDetailsPage = plansPage.openPlanCard(PlanFilteredCards.LOW_IMPACT_STRENGTH);
+        Assert.assertTrue(planDetailsPage.isPageOpened(), "Plan details page isn't opened");
+        planDetailsPage.startPlan();
+        plansTaskPage.clickClosePopUpButton();
+
+        LogWorkoutPageBase logWorkoutPage = plansTaskPage.clickLogWorkoutButton();
+        Assert.assertTrue(logWorkoutPage.isPageOpened(), "Log workout page isn't opened");
+        logWorkoutPage.clickCheckmarkIcon();
+        DiaryPageBase diaryPage = logWorkoutPage.clickViewLinkOnPopUpMessage();
+        Assert.assertTrue(diaryPage.isPageOpened(), "Tapping on VIEW will not take the user to diary and user will not see workout logged to the exercise");
+    }
+
 }

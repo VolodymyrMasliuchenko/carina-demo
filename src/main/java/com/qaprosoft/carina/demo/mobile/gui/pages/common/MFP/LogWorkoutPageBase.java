@@ -11,4 +11,5 @@ public abstract class LogWorkoutPageBase extends AbstractPage {
     public abstract PlansTaskPageBase clickCheckmarkIcon();
 
     public abstract boolean isWorkoutLoggedMessagePresent();
+    public abstract DiaryPageBase clickViewLinkOnPopUpMessage();
 }
