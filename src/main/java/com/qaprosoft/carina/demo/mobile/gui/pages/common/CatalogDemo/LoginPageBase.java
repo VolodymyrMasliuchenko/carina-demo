@@ -5,9 +5,10 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class LoginPageBase extends AbstractPage {
 
-    public abstract CatalogPageBase loginUser();
-
     public LoginPageBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract CatalogPageBase loginUser();
+
 }

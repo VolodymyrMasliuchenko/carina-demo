@@ -6,8 +6,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogDemo.CartPageBase;
 import org.openqa.selenium.WebDriver;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.math.BigDecimal;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CartPageBase.class)
 public class CartPage extends CartPageBase {
@@ -40,14 +39,14 @@ public class CartPage extends CartPageBase {
         removeProductButton.click(3);
     }
 
-    public double calculateItemsPrice() {
-        double firstDouble = Double.parseDouble(firstElementPrice.getAttribute("value").replace("$",""));
-        double secondDouble = Double.parseDouble(secondElementPrice.getAttribute("value").replace("$",""));
-        return firstDouble + secondDouble;
+    public BigDecimal calculateItemsPrice() {
+        BigDecimal first = new BigDecimal(firstElementPrice.getAttribute("value").replace("$",""));
+        BigDecimal second = new BigDecimal(secondElementPrice.getAttribute("value").replace("$",""));
+        return first.add(second);
     }
 
-    public double getTotalPrice() {
-        return Double.parseDouble(totalPrice.getAttribute("value").replace("$",""));
+    public BigDecimal getTotalPrice() {
+        return new BigDecimal(totalPrice.getAttribute("value").replace("$",""));
     }
 
 }

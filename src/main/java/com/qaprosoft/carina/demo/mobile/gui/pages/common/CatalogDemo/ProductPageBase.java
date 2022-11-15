@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class ProductPageBase extends AbstractPage {
 
-    public abstract void clickAddToCartButton();
     public ProductPageBase(WebDriver driver) {
         super(driver);
     }
+
+    public abstract void clickAddToCartButton();
 }

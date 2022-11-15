@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.mobile.gui.pages.ios.CatalogDemo;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogDemo.CatalogPageBase;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.CatalogDemo.LoginPageBase;
@@ -12,7 +13,7 @@ import org.openqa.selenium.WebDriver;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase implements IMobileUtils {
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"Login\"`]")
+    @ExtendedFindBy(iosPredicate = "label == 'Login' AND name == 'Login' AND value == 'Login'")
     private ExtendedWebElement loginPageTitle;
 
     @ExtendedFindBy(accessibilityId = "Login button")
@@ -23,11 +24,8 @@ public class LoginPage extends LoginPageBase implements IMobileUtils {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-    }
-
-    @Override
-    public boolean isPageOpened() {
-        return loginPageTitle.isElementPresent(3);
+        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        setUiLoadedMarker(loginPageTitle);
     }
 
     @Override

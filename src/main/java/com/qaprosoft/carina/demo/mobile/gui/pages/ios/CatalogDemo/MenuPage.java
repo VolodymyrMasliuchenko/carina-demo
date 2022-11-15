@@ -15,13 +15,13 @@ public class MenuPage extends MenuPageBase {
     @ExtendedFindBy(accessibilityId = "%s")
     private ExtendedWebElement menuItem;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"Log Out\"`]")
+    @ExtendedFindBy(iosPredicate = "label == 'Log Out' AND name == 'Log Out' AND value == 'Log Out'")
     private ExtendedWebElement logoutPopUpTitle;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"Log Out\"`]")
+    @ExtendedFindBy(iosPredicate = "label == 'Log Out' AND name == 'Log Out' AND type == 'XCUIElementTypeButton'")
     private ExtendedWebElement logoutButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"You are successfully logged out.\"`]")
+    @ExtendedFindBy(iosPredicate = "label == 'You are successfully logged out.' AND name == 'You are successfully logged out.' AND value == 'You are successfully logged out.'")
     private ExtendedWebElement successMessage;
 
     public MenuPage(WebDriver driver) {
